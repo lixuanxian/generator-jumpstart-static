@@ -28,7 +28,8 @@
         "grunt-docco": "~0.3.3",
         "assemble": "~0.4.38",
         "assemble-swig": "~0.1.0",
-        "grunt-swig-templates": "~0.1.2"
+        "grunt-contrib-clean": "~0.6.0",
+        "grunt-prettify": "~0.3.5"
     },
     "author": {
         "name": "Max Barry"

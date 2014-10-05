@@ -79,4 +79,4 @@ Serve the project on localhost. Defaults to port 8000.
 Watch for changes in SCSS, js, image and font directories, and any templates. On change recompiles that aspect of the project. The project does not include livereload because it sucks more than it helps.
 
 #### grunt docco
-Build HTML documentation for javascript files. See [Docco documentation](http://jashkenas.github.io/docco/) for more
+Build HTML documentation for javascript files. See [Docco documentation](http://jashkenas.github.io/docco/) for more information.
