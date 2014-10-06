@@ -1,20 +1,9 @@
 {
-    "name": "static-site-template",
-    "title": "Static Site Scaffold for not Fancy Guys",
-    "description": "My personal project scaffold for rapid setup of Assemble generated static sites.",
-    "version": "0.0.2",
-    "keywords": [
-        "assemble",
-        "static",
-        "site",
-        "templates",
-        "project",
-        "scaffold",
-        "html",
-        "scss",
-        "bourbon",
-        "neat"
-    ],
+    "name": "",
+    "title": "",
+    "description": "",
+    "version": "",
+    "keywords": [],
     "dependencies": {
         "grunt": "~0.4.2",
         "grunt-contrib-jshint": "~0.10.0",
@@ -32,7 +21,7 @@
         "grunt-prettify": "~0.3.5"
     },
     "author": {
-        "name": "Max Barry"
+        "name": ""
     },
     "main": "Gruntfile.js",
     "repository": {

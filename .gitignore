@@ -1,11 +1,10 @@
-/bower_components/*
-/node_modules/*
+bower_components/*
+node_modules/*
 
-/.sass-cache/*
+.sass-cache/*
 *.DS_Store
 
-/build/*
-
+build/*
 
 *.sublime-project
 *.sublime-workspace
