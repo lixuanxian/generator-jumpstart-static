@@ -2,7 +2,7 @@
     "name": "static-site-template",
     "title": "Static Site Scaffold for not Fancy Guys",
     "description": "My personal project scaffold for rapid setup of Assemble generated static sites.",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "keywords": [
         "assemble",
         "static",
@@ -17,7 +17,6 @@
     ],
     "dependencies": {
         "grunt": "~0.4.2",
-        "grunt-copy-to": "~0.0.12",
         "grunt-bump": "~0.0.16"
     },
     "author": {
