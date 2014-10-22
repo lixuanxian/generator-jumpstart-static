@@ -8,7 +8,7 @@ My personal project scaffold for Assemble generated static sites.
  - [Node & npm](http://nodejs.org/)
  - (optional) [Compass](http://compass-style.org/help/) or SASS compiler capable of compiling SASS >= 3.3, if frontend packages are used as provided.
 
-### Getting started
+### Usage
   - Install dependencies (see requirements)
   - Clone boilerplate repository
 
