@@ -2,6 +2,7 @@
 My personal project scaffold for Assemble generated static sites.
 
 ### Requirements
+ - [Grunt-CLI] (https://github.com/gruntjs/grunt-cli)
  - [Grunt-Init](http://gruntjs.com/project-scaffolding)
  - [Bower](http://bower.io/)
  - [Node & npm](http://nodejs.org/)
@@ -18,7 +19,8 @@ My personal project scaffold for Assemble generated static sites.
 3. grunt-init /path/to/boileplate
 4. npm install (installs boilerplate Node dependencies)
 5. bower install (installs boilerplate Bower dependencies)
-6. grunt serve
+6. grunt build
+7. grunt serve
 
 ### Templates
 The boilerplate uses Swig templates in conjunction with Assemble to generate static sites.
