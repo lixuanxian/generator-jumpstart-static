@@ -29,7 +29,7 @@ It gives the user the option of including several packages I find helpful when b
 ### Gruntfile.js
 A pre-fabbed Grunfile with everything you need to build the project, set a watch on it, and run the project on localhost port 8000.
 
-#### Available commands:
+##### Available commands:
 `grunt build` ~ Build the templates, SCSS, Javascript, fonts, and images, within the project.
 
 `grunt dist` ~ As above but for a production environment (e.g. minifies .js and .css files, etc.)
@@ -46,7 +46,7 @@ All the packages required to run the above Gruntfile setup
 ### src folder
 Contains "the files you edit". SCSS and Javascript files to get you going, with the packages you have opted in to integrated from the off.
 
-#### Templates
+##### Templates
 Contains the template files. Best bet is to read the [Assemble documentation](http://assemble.io/docs/), and start with `index.swig` inside the `pages` directory.
 
 Inside of the `layouts` directory you will find `base.swig`. This file contains a standard HTML5 document wrapper and includes the built out statics (`app.js`, `app.scss`, etc.)
