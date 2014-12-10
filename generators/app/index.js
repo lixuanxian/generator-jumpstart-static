@@ -7,9 +7,8 @@ var prompts = [];
 /**
 Prompts user with a checklist of packages to be installed on project.
 
-"frontend_packages" contains the list of packages within that checklist.
+frontend_packages contains the list of packages within that checklist.
 */
-// TODO : Clean it up so that bower_path is a variable and you can just loop over vars in templates
 var frontend_packages = [
     {
         name: "jQuery (> 2.0)",
@@ -103,7 +102,7 @@ prompts = prompts.concat([
 ]);
 
 /**
-Prompts for frontend packages that depend on the initial packages selected.
+Prompts for further packages that depend on the initial packages selected.
 */
 var dependent_packages = [
     {
@@ -202,6 +201,7 @@ module.exports = generators.Base.extend({
         /**
         Basic directory operations
         */
+        this.log("Creating required directories...");
         var directories_to_make = [
             "src",
             "src/js",
@@ -212,6 +212,8 @@ module.exports = generators.Base.extend({
         ];
 
         if (this.ctxVars.ember) {
+            this.log("Creating additional directories for Ember.js");
+
             directories_to_make = directories_to_make.concat([
                 "src/templates/components",
                 "src/templates/partials",
@@ -234,6 +236,7 @@ module.exports = generators.Base.extend({
         /**
         Basic copy operations
         */
+        this.log("Copying files...");
         var to_copy = [
             ".tpl.gitignore",
             ".tpl.bowerrc",
@@ -255,6 +258,7 @@ module.exports = generators.Base.extend({
         /**
         Files requiring templating
         */
+        this.log("Templating files...");
         var to_template = [
                 "bower.tpl.json",
                 "config.tpl.rb",
@@ -288,11 +292,11 @@ module.exports = generators.Base.extend({
         };
     },
     install: function() {
+        this.log("Installing dependencies");
         /**
         Install Node packages
         */
         this.npmInstall();
-
 
         /**
         Ember specific logic
@@ -326,6 +330,7 @@ module.exports = generators.Base.extend({
         /**
         Do an initial Grunt build
         */
+        this.log("Doing an initial build");
         this.spawnCommand("grunt", ["build"]);
 
     }
