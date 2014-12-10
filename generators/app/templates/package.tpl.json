@@ -29,7 +29,7 @@
         "type": "git",
         "url": ""
     },
-    "licence": "MIT",
+    "license": "MIT",
     "readmeFilename": "Readme.md",
     "paths": {
         "project": "<%= src_location %>",

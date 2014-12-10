@@ -39,10 +39,6 @@
     "type": "git",
     "url": "git@github.com:max-barry/static-site-template.git"
   },
-  "licence": "MIT",
-  "readmeFilename": "README.md",
-  "paths": {
-    "release": "../static-site-template/",
-    "node_modules": "node_modules/"
-  }
+  "license": "MIT",
+  "readmeFilename": "README.md"
 }
