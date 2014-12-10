@@ -8,3 +8,5 @@ build/*
 
 *.sublime-project
 *.sublime-workspace
+
+*.log
