@@ -1,36 +1,48 @@
 {
-    "name": "static-site-template",
-    "title": "Static Site Scaffold for not Fancy Guys",
-    "description": "My personal project scaffold for rapid setup of Assemble generated static sites.",
-    "version": "0.0.4",
-    "keywords": [
-        "assemble",
-        "static",
-        "site",
-        "templates",
-        "project",
-        "scaffold",
-        "html",
-        "scss",
-        "bourbon",
-        "neat"
-    ],
-    "dependencies": {
-        "grunt": "~0.4.2",
-        "grunt-bump": "~0.0.16"
-    },
-    "author": {
-        "name": "Max Barry"
-    },
-    "main": "Gruntfile.js",
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:max-barry/static-site-template.git"
-    },
-    "licence": "MIT",
-    "readmeFilename": "README.md",
-    "paths": {
-        "release": "../static-site-template/",
-        "node_modules": "node_modules/"
-    }
+  "name": "generator-kickoff-static",
+  "title": "Static Site Scaffold for not Fancy Guys",
+  "description": "My personal project scaffold for rapid setup of Assemble generated static sites.",
+  "version": "0.0.4",
+  "keywords": [
+    "assemble",
+    "static",
+    "templates",
+    "generator",
+    "project",
+    "scaffold",
+    "yeoman",
+    "bourbon",
+    "neat",
+    "foundation",
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "grunt": ">=0.4.2",
+    "grunt-bump": "~0.0.16",
+    "yeoman-generator": ">=0.18.3",
+    "lodash": "~2.4.1"
+  },
+  "peerDependencies": {
+    "yo": ">=1.1.2"
+  },
+  "engines": {
+    "node": ">=0.10.0",
+    "npm": ">=1.2.10",
+    "bower": ">=1.3.0",
+    "sass": ">=3.4.0"
+  },
+  "author": {
+    "name": "Max Barry"
+  },
+  "main": "Gruntfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:max-barry/static-site-template.git"
+  },
+  "licence": "MIT",
+  "readmeFilename": "README.md",
+  "paths": {
+    "release": "../static-site-template/",
+    "node_modules": "node_modules/"
+  }
 }

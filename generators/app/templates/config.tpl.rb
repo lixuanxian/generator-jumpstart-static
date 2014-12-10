@@ -1,15 +1,26 @@
 # Require any additional compass plugins here.
+<% if (bourbon) { %>
 add_import_path "bower_components/bourbon/dist"
+<% } %>
+<% if (neat) { %>
 add_import_path "bower_components/neat/app/assets/stylesheets"
+<% } %>
+<% if (mey_reset) { %>
 add_import_path "bower_components/reset-scss"
+<% } %>
+<% if (scut) { %>
 add_import_path "bower_components/scut/dist"
+<% } %>
+<% if (foundation) { %>
+add_import_path "bower_components/foundation/scss"
+<% } %>
 
 # Set this to the root of your project when deployed:
 http_path = "/"
-css_dir = "build/stylesheets"
-sass_dir = "src/scss"
-images_dir = "src/images"
-javascripts_dir = "src/js"
+css_dir = "<%= build_location %>css"
+sass_dir = "<%= src_location %>scss"
+images_dir = "<%= src_location %>images"
+javascripts_dir = "<%= src_location %>js"
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed
