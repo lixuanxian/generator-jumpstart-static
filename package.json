@@ -2,7 +2,7 @@
   "name": "generator-kickoff-static",
   "title": "Static Site Scaffold for not Fancy Guys",
   "description": "My personal project scaffold for rapid setup of Assemble generated static sites.",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "keywords": [
     "assemble",
     "static",
