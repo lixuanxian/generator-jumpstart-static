@@ -207,7 +207,7 @@ module.exports = function(grunt) {
         cmq: {
             dist: {
                 files: {
-                    "<%%= pkg.dest.css %>": ["<%%= pkg.dest.css %>**/*.css"]
+                    "<%%= pkg.build.css %>": ["<%%= pkg.build.css %>**/*.css"]
                 }
             }
         },
@@ -224,9 +224,9 @@ module.exports = function(grunt) {
         webp: {
             files: {
                 expand: true,
-                cwd: "<%%= pkg.dest.images %>",
+                cwd: "<%%= pkg.build.images %>",
                 src: "**/*.png",
-                dest: "<%%= pkg.dest.images %>"
+                dest: "<%%= pkg.build.images %>"
             },
             options: {
                 binpath: require("webp-bin").path,
