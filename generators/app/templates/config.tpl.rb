@@ -1,6 +1,6 @@
 # Require any additional compass plugins here.
 <% if (bourbon) { %>
-add_import_path "bower_components/bourbon/dist"
+add_import_path "bower_components/bourbon/app/assets/stylesheets"
 <% } %>
 <% if (neat) { %>
 add_import_path "bower_components/neat/app/assets/stylesheets"
