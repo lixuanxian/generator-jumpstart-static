@@ -1,0 +1,2 @@
+- Add extensions directory and file for Swig Assemble Projects
+- Add Handlebars support to Assemble projects
