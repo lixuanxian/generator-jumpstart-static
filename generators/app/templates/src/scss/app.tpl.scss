@@ -1,8 +1,31 @@
+/**
+Vendor
+*/
 <% if (mey_reset && !foundation) { %>@import "reset";<% } %>
 <% if (bourbon) { %>@import "bourbon";<% } %>
-@import "settings";
-<% if (neat) { %>@import "neat";<% } %>
 <% if (scut) { %>@import "scut";<% } %>
+/**
+Functions
+*/
+@import "math";
+/**
+Settings & variables
+*/
+@import "settings";
+@import "typography";
+<% if (neat) { %>@import "neat";<% } %>
+<% if (!foundation || !neat) { %>
+/**
+Custom resets
+*/
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+<% } %>
 <% if (foundation) { %>
 @import "normalize";
 @import "foundation";

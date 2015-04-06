@@ -1,0 +1,80 @@
+$default-line-height: 1.4;
+$body-font-size: if($em-base, $em-base, 16px);
+$scale-factor: 1.618; // Golden Ratio
+
+$blh: round($body-font-size * $default-line-height);
+
+$h1-multip: 3;
+$h2-multip: 2;
+$h3-multip: 1;
+$h4-multip: 0;
+
+/**
+@link http://www.gridlover.net/
+@link http://webdesign.tutsplus.com/articles/improving-layout-with-vertical-rhythm--webdesign-14070
+*/
+
+html {
+    font-size: $body-font-size;
+}
+
+body {
+    line-height: $blh;
+}
+
+h1 {
+    font-size: round($body-font-size * power($scale-factor, $h1-multip));
+    line-height: $blh * if($h1-multip == 0, 1, $h1-multip);
+    margin-top: $blh * 2;
+    margin-bottom: $blh;
+}
+
+h2 {
+    font-size: round($body-font-size * power($scale-factor, $h2-multip));
+    line-height: $blh * if($h2-multip == 0, 1, $h2-multip);
+    margin-top: $blh * 2;
+    margin-bottom: $blh;
+}
+
+h3 {
+    font-size: round($body-font-size * power($scale-factor, $h3-multip));
+    line-height: $blh * if($h3-multip == 0, 1, $h3-multip);
+    margin-top: $blh;
+    margin-bottom: $blh;
+}
+
+h4 {
+    font-size: round($body-font-size * power($scale-factor, $h4-multip));
+    line-height: $blh * if($h4-multip == 0, 1, $h4-multip);
+    margin-top: $blh;
+    margin-bottom: $blh;
+}
+
+p, ul, ol, pre, table, blockquote {
+    margin-top: $blh;
+    margin-bottom: $blh;
+}
+
+hr {
+    border: 1px solid;
+    margin: -1px 0;
+}
+
+ul ul, ol ol, ul ol, ol ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+b, strong, em, small, code {
+    line-height: 1;
+}
+
+sup, sub {
+    vertical-align: baseline;
+    position: relative;
+    top: -0.4em;
+}
+
+sub {
+    top: 0.4em;
+}

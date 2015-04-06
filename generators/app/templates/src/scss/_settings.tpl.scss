@@ -20,16 +20,16 @@ $heavy-font-family: $base-font-family;
 // -------------
 // Media Queries
 // -------------
-$xsmall-break: 380;
-$small-break: 640;
-$medium-break: 1024;
-$large-break: 1440;
+$xsmall-break: 380px;
+$small-break: 640px;
+$medium-break: 1024px;
+$large-break: 1440px;
 
-$xsmall-range: (0rem, rem($xsmall-break));
-$small-range: (rem($xsmall-break + 1), rem($small-break));
-$medium-range: (rem($small-break + 1), rem($medium-break));
-$large-range: (rem($medium-break + 1), rem($large-break));
-$xlarge-range: (rem($large-break + 1));
+$xsmall-range: (0, $xsmall-break);
+$small-range: ($xsmall-break + 1, $small-break);
+$medium-range: ($small-break + 1, $medium-break);
+$large-range: ($medium-break + 1, $large-break);
+$xlarge-range: ($large-break + 1);
 
 /**
 @link https://github.com/zurb/bower-foundation/blob/master/scss/foundation/_settings.scss#L151

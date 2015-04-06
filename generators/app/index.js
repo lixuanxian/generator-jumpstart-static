@@ -249,6 +249,8 @@ module.exports = generators.Base.extend({
                 "src/templates/pages/index.tpl.swig",
                 "src/templates/includes/footer.tpl.swig",
                 "src/templates/includes/header.tpl.swig",
+                "src/scss/_math.tpl.scss",
+                "src/scss/_typography.tpl.scss",
             ]);
         }
 
