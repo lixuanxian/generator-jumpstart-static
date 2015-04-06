@@ -1,7 +1,7 @@
 "use strict"
 var generators = require("yeoman-generator"),
     ld = require("lodash"),
-    underscored = require("underscored");
+    slug = require("slug");
 
 var prompts = [];
 
@@ -162,7 +162,7 @@ module.exports = generators.Base.extend({
                 Basic app settings
                 */
                 this.appName = answers.name;
-                this.slugName = underscored(this.appName);
+                this.slugName = slug(this.appName);
                 this.frontendPackages = answers.scsspkgs.concat(answers.jspkgs);
 
                 /**
