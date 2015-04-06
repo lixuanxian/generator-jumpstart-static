@@ -1,9 +1,13 @@
+$base-font-family: if($base-font-family, $base-font-family, serif);
+$heavy-font-family: if($heavy-font-family, $heavy-font-family, sans-serif);
+
+
 $default-line-height: 1.4;
 $body-font-size: if($em-base, $em-base, 16px);
-$scale-factor: 1.618; // Golden Ratio
 
 $blh: round($body-font-size * $default-line-height);
 
+$scale-factor: 1.618; // Golden Ratio
 $h1-multip: 3;
 $h2-multip: 2;
 $h3-multip: 1;
@@ -20,10 +24,12 @@ html {
 
 body {
     line-height: $blh;
+    font-family: $base-font-family;
 }
 
 h1 {
     font-size: round($body-font-size * power($scale-factor, $h1-multip));
+    font-family: $heavy-font-family;
     line-height: $blh * if($h1-multip == 0, 1, $h1-multip);
     margin-top: $blh * 2;
     margin-bottom: $blh;
@@ -31,6 +37,7 @@ h1 {
 
 h2 {
     font-size: round($body-font-size * power($scale-factor, $h2-multip));
+    font-family: $heavy-font-family;
     line-height: $blh * if($h2-multip == 0, 1, $h2-multip);
     margin-top: $blh * 2;
     margin-bottom: $blh;
@@ -38,6 +45,7 @@ h2 {
 
 h3 {
     font-size: round($body-font-size * power($scale-factor, $h3-multip));
+    font-family: $heavy-font-family;
     line-height: $blh * if($h3-multip == 0, 1, $h3-multip);
     margin-top: $blh;
     margin-bottom: $blh;
@@ -45,6 +53,7 @@ h3 {
 
 h4 {
     font-size: round($body-font-size * power($scale-factor, $h4-multip));
+    font-family: $heavy-font-family;
     line-height: $blh * if($h4-multip == 0, 1, $h4-multip);
     margin-top: $blh;
     margin-bottom: $blh;
