@@ -1,9 +1,10 @@
 $base-font-family: serif !default;
 $heavy-font-family: sans-serif !default;
+$em-base: 16px !default;
 
 
 $default-line-height: 1.4;
-$body-font-size: if($em-base, $em-base, 16px);
+$body-font-size: $em-base;
 
 $blh: round($body-font-size * $default-line-height);
 
