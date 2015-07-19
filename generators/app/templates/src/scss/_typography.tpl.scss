@@ -1,5 +1,5 @@
-$base-font-family: if($base-font-family, $base-font-family, serif);
-$heavy-font-family: if($heavy-font-family, $heavy-font-family, sans-serif);
+$base-font-family: serif !default;
+$heavy-font-family: sans-serif !default;
 
 
 $default-line-height: 1.4;
