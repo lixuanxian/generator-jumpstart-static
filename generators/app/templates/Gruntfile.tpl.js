@@ -86,6 +86,16 @@ module.exports = function(grunt) {
           -  Javascript documentation
           -  Run local server
         */
+        bump: {
+            options: {
+                push: true,
+                pushTo: "origin",
+                files: [
+                    "package.json",
+                    "bower.json"
+                ]
+            }
+        },
         clean: [
             "<%%= pkg.paths.build %>",
         ],
