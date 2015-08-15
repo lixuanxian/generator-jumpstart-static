@@ -71,7 +71,7 @@ var frontend_packages = [
         value: "scut",
         checked: true,
         bower_package: "scut",
-        version: "^0.10.3",
+        version: "^1.2.1",
         category: "scss"
     },
     {
