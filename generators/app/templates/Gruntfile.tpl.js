@@ -205,13 +205,16 @@ module.exports = function(grunt) {
                 }
             }
         },
-        cssmin: {
-            minify: {
-                expand: true,
-                cwd: "<%%= pkg.build.css %>",
-                src: ["*.css", ],
-                dest: "<%%= pkg.build.css %>",
-                ext: ".css"
+        postcss: {
+            options: {
+                processors: [
+                    require("pixrem")(), // add fallbacks for rem units
+                    require("autoprefixer-core")({browsers: "last 2 versions"}), // add vendor prefixes
+                    require("cssnano")() // minify the result
+                ]
+            },
+            dist: {
+                src: "<%%= pkg.build.css %>**/*.css"
             }
         },
         cmq: {
@@ -279,7 +282,7 @@ module.exports = function(grunt) {
     require("load-grunt-tasks")(grunt, {pattern: ["grunt-*", "assemble"]});
 
     grunt.registerTask("build", [<% if (ember) { %>"emberTemplates"<% } else { %>"assemble"<% } %>, "jshint", "concat", "uglify:dev", "compass", "copy"]);
-    grunt.registerTask("dist", ["clean", <% if (ember) { %>"emberTemplates"<% } else { %>"assemble", "prettify"<% } %>, "jshint", "concat", "uglify", "compass", "cmq", "cssmin", "copy:fonts", "imagemin", "webp"]);
+    grunt.registerTask("dist", ["clean", <% if (ember) { %>"emberTemplates"<% } else { %>"assemble", "prettify"<% } %>, "jshint", "concat", "uglify", "compass", "cmq", "postcss", "copy:fonts", "imagemin", "webp"]);
     grunt.registerTask("run", "connect");
 
 };
