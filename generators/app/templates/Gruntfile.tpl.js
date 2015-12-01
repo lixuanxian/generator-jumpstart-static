@@ -114,6 +114,7 @@ module.exports = function(grunt) {
             server: {
                 options: {
                     keepalive: true,
+                    base: "<%%= pkg.paths.build %>"
                 }
             }
         },
