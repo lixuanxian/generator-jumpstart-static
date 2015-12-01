@@ -2,15 +2,30 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON("package.json"),
-        // Compass to handle CSS compilation and concatanation
-        compass: {
-            dist: {
-                options: {
-                    config: "config.rb"
+        /**
+        Build tasks
+          -  Compile SCSS w/ node-sass
+          -  Copy static files like images and fonts
+        */
+        sass: {
+            options: {
+                includePaths: [
+                    <% if (bourbon) { %>'<%%= pkg.paths.bower %>bourbon/dist/'<% } %>,
+                    <% if (neat) { %>'<%%= pkg.paths.bower %>neat/app/assets/stylesheets/'<% } %>,
+                    <% if (mey_reset) { %>'<%%= pkg.paths.bower %>reset-scss/'<% } %>,
+                    <% if (scut) { %>'<%%= pkg.paths.bower %>scut/dist/'<% } %>,
+                    <% if (foundation) { %>'<%%= pkg.paths.bower %>foundation/scss/'<% } %>,
+                ]
+            },
+            files: [
+                {
+                    expand: true,
+                    cwd: "<%%= pkg.src.scss %>",
+                    src: "**/*.scss",
+                    dest: "<%%= pkg.build.css %>"
                 }
-            }
+            ]
         },
-        // Copy fonts and images to build output directory
         copy: {
             images: {
                 files: [
@@ -118,18 +133,6 @@ module.exports = function(grunt) {
         /**
         Templating
         */
-        <% if (ember) { %>
-        emberTemplates: {
-            compile: {
-                options: {
-                    templateBasePath: "<%%= pkg.paths.templates %>"
-                },
-                files: {
-                    "<%%= pkg.paths.tmp %>template.js": ["<%%= pkg.paths.templates %>**/*.hbs",] 
-                }
-            }
-        },
-        <% } else { %>
         assemble : {
             options: {
                 engine: "swig",
@@ -146,7 +149,6 @@ module.exports = function(grunt) {
                 dest: "<%%= pkg.paths.build %>"
             }
         },
-        <% } %>
         /*
         Performance tasks
           -  Javascript linting
@@ -197,13 +199,9 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     "<%%= pkg.build.js %>app.js": ["<%%= concat.dist.dest %>"],
-                }
-            },
-            dev: {
-                files: {
                     <% if (modernizr || foundation) { %>"<%%= pkg.build.js %>modernizr.min.js": ["<%%= pkg.paths.bower %>modernizr/modernizr.js"]<% } %>
                 }
-            }
+            },
         },
         postcss: {
             options: {
@@ -281,8 +279,9 @@ module.exports = function(grunt) {
 
     require("load-grunt-tasks")(grunt, {pattern: ["grunt-*", "assemble"]});
 
-    grunt.registerTask("build", [<% if (ember) { %>"emberTemplates"<% } else { %>"assemble"<% } %>, "jshint", "concat", "uglify:dev", "compass", "copy"]);
-    grunt.registerTask("dist", ["clean", <% if (ember) { %>"emberTemplates"<% } else { %>"assemble", "prettify"<% } %>, "jshint", "concat", "uglify", "compass", "cmq", "postcss", "copy:fonts", "imagemin", "webp"]);
+    grunt.registerTask("base", ["assemble", "jshint", "concat", "uglify", "sass"])
+    grunt.registerTask("build", ["base", "copy"]);
+    grunt.registerTask("dist", ["clean", "base", "prettify", "cmq", "postcss", "copy:fonts", "imagemin", "webp"]);
     grunt.registerTask("run", "connect");
 
 };
