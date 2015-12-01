@@ -10,21 +10,19 @@ module.exports = function(grunt) {
         sass: {
             options: {
                 includePaths: [
-                    <% if (bourbon) { %>'<%%= pkg.paths.bower %>bourbon/dist/'<% } %>,
-                    <% if (neat) { %>'<%%= pkg.paths.bower %>neat/app/assets/stylesheets/'<% } %>,
-                    <% if (mey_reset) { %>'<%%= pkg.paths.bower %>reset-scss/'<% } %>,
-                    <% if (scut) { %>'<%%= pkg.paths.bower %>scut/dist/'<% } %>,
-                    <% if (foundation) { %>'<%%= pkg.paths.bower %>foundation/scss/'<% } %>,
+                    <% if (bourbon) { %>'<%%= pkg.paths.bower %>bourbon/app/assets/stylesheets/',<% } %>
+                    <% if (neat) { %>'<%%= pkg.paths.bower %>neat/app/assets/stylesheets/',<% } %>
+                    <% if (mey_reset) { %>'<%%= pkg.paths.bower %>reset-scss/',<% } %>
+                    <% if (scut) { %>'<%%= pkg.paths.bower %>scut/dist/',<% } %>
+                    <% if (foundation) { %>'<%%= pkg.paths.bower %>foundation/scss/',<% } %>
                 ]
             },
-            files: [
-                {
-                    expand: true,
-                    cwd: "<%%= pkg.src.scss %>",
-                    src: "**/*.scss",
-                    dest: "<%%= pkg.build.css %>"
+            dist: {
+                files: {
+                    '<%%= pkg.build.css %>app.css': '<%%= pkg.src.scss %>app.scss',
+                    '<%%= pkg.build.css %>fonts.css': '<%%= pkg.src.scss %>fonts.scss',
                 }
-            ]
+            }
         },
         copy: {
             images: {
@@ -77,15 +75,6 @@ module.exports = function(grunt) {
                 ],
                 tasks: ["copy:fonts"]
             },
-            <% if (ember) { %>
-            templates: {
-                files: [
-                    "<%%= pkg.paths.templates %>**/*.hbs",
-                    "index.html",
-                ],
-                tasks: ["emberTemplates", "concat"]
-            }
-            <% } else { %>
             templates: {
                 files: [
                     "<%%= pkg.paths.templates %>**/*.swig",
@@ -93,7 +82,6 @@ module.exports = function(grunt) {
                 ],
                 tasks: ["assemble"]
             }
-            <% } %>
         },
         /**
         General
@@ -126,7 +114,6 @@ module.exports = function(grunt) {
             server: {
                 options: {
                     keepalive: true,
-                    <% if (!ember) { %>base: "<%%= pkg.paths.build %>"<% } %>
                 }
             }
         },
@@ -184,9 +171,6 @@ module.exports = function(grunt) {
                     <% if (jquery || foundation) { %>"<%%= pkg.paths.bower %>jquery/dist/jquery.min.js",<% } %>
                     <% if (lodash) { %>"<%%= pkg.paths.bower %>lodash/dist/lodash.min.js",<% } %>
                     <% if (moment) { %>"<%%= pkg.paths.bower %>moment/min/moment.min.js",<% } %>
-                    <% if (ember) { %>"<%%= pkg.paths.bower %>handlebars/handlebars.js",<% } %>
-                    <% if (ember) { %>"<%%= pkg.paths.bower %>ember/ember.js",<% } %>
-                    <% if (ember) { %>"<%%= pkg.paths.tmp %>template.js",<% } %>
                     "<%%= pkg.src.js %>**/*.js"
                 ],
                 dest: "<%%= pkg.build.js %>app.js"
@@ -263,7 +247,6 @@ module.exports = function(grunt) {
                 lossless: false
             }
         },
-        <% if (!ember) { %>
         prettify: {
             files: {
                 expand: true,
@@ -273,7 +256,6 @@ module.exports = function(grunt) {
                 dest: "<%%= pkg.paths.build %>"
             }
         },
-        <% } %>
     });
 
 

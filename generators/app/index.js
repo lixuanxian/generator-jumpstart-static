@@ -22,7 +22,7 @@ var frontend_packages = [{
     value: "modernizr",
     checked: true,
     bower_package: "modernizr",
-    version: "^3.2.0",
+    version: "^2.8.3",
     category: "js"
 }, {
     name: "Lo-Dash ~ Advanced list & object manipulation",
@@ -202,6 +202,13 @@ module.exports = generators.Base.extend({
         var to_copy = [
             ".tpl.gitignore",
             ".tpl.bowerrc",
+            "src/templates/data/data.tpl.json",
+            "src/templates/pages/index.tpl.swig",
+            "src/templates/includes/footer.tpl.swig",
+            "src/templates/includes/header.tpl.swig",
+            "src/scss/_math.tpl.scss",
+            "src/scss/_typography.tpl.scss",
+            "src/scss/fonts.tpl.scss",
         ];
 
         for (var i = to_copy.length - 1; i >= 0; i--) {
@@ -214,7 +221,6 @@ module.exports = generators.Base.extend({
         this.log("Templating files...");
         var to_template = [
             "bower.tpl.json",
-            "config.tpl.rb",
             "package.tpl.json",
             "Gruntfile.tpl.js",
             "src/js/app.tpl.js",
