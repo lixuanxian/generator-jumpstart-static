@@ -24,7 +24,7 @@ var frontend_packages = [
         value: "modernizr",
         checked: true,
         bower_package: "modernizr",
-        version: "^2.8.3",
+        version: "^3.2.0",
         category: "js"
     },
     {
@@ -32,15 +32,7 @@ var frontend_packages = [
         value: "lodash",
         checked: false,
         bower_package: "lodash",
-        version: "^2.4.1",
-        category: "js"
-    },
-    {
-        name: "Ember.js ~ Client side MVC",
-        value: "ember",
-        checked: false,
-        bower_package: "ember",
-        version: "^1.8.0",
+        version: "^3.10.1",
         category: "js"
     },
     {

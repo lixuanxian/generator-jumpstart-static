@@ -7,6 +7,11 @@ A [**Yeoman**](http://yeoman.io/) generator for scaffolding new static sites.
  - [Bower](http://bower.io/)
  - [Node & npm](http://nodejs.org/)
 
+## Changelog
+**v.1.2.0**
+ - *Removed* Ruby dependency. Libsass / node-sass now compiles SCSS, removing the need to have Ruby installed
+ - *Deprecated* Ember.js aspect of Wizard. [ember-cli](http://ember-cli.com/) does a much better job than I could do. I suggest using that. 
+
 ## Getting started
 1. Install `npm install generator-jumpstart-static`
 2. Run `yo generator-jumpstart-static`
@@ -21,8 +26,8 @@ It gives the user the option of including several packages I find helpful when b
  - [**Neat**](http://neat.bourbon.io/) ~ Bourbon dependent grid framework
  - [**Scut**](http://davidtheclark.github.io/scut/) ~ More useful SCSS shortcuts
  - [**Foundation**](http://foundation.zurb.com/) ~ Zurb's big pants CSS framework
- - [**Lo-Dash**](https://lodash.com) ~ Lots of usefult Javascript functions for MacGyvering with objects and lists
- - [**Ember.js**](http://emberjs.com/) ~ A full client side MVC in the same vein as Angular. *N.B. Including Ember in your project will alter the structure of the scaffold*
+ - [**Lo-Dash**](https://lodash.com) ~ Lots of useful Javascript functions for MacGyvering with objects and lists
+ - [**Moment**](http://momentjs.com/) ~ The best library for handling time there is
 
 ## What you get
 
