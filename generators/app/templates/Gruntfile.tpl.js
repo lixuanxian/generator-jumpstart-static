@@ -61,7 +61,7 @@ module.exports = function(grunt) {
             },
             scss: {
                 files: ["<%%= pkg.src.scss %>**/**/*.scss"],
-                tasks: ["compass", "cmq"]
+                tasks: ["sass", "cmq"]
             },
             images: {
                 files: [
