@@ -8,6 +8,8 @@
     <meta name="keywords" content="{{meta.keywords}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {% include "src/templates/includes/socialmeta.swig" %}
+
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/fonts.css">
 
