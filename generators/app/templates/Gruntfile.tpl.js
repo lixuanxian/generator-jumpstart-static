@@ -176,7 +176,7 @@ module.exports = function(grunt) {
                     <% if (jquery || foundation) { %>"<%%= pkg.paths.bower %>jquery/dist/jquery.min.js",<% } %>
                     <% if (lodash) { %>"<%%= pkg.paths.bower %>lodash/dist/lodash.min.js",<% } %>
                     <% if (moment) { %>"<%%= pkg.paths.bower %>moment/min/moment.min.js",<% } %>
-                    "<%%= pkg.src.js %>main.js"
+                    "<%%= pkg.src.js %>app.js"
                     "<%%= pkg.src.js %>**/*.js"
                 ],
                 dest: "<%%= pkg.build.js %>app.js"
