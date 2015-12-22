@@ -5,7 +5,7 @@
     "version": "0.0.1gi",
     "keywords": [],
     "devDependencies": {
-        "autoprefixer-core": "^5.2.1",
+        "autoprefixer": "^6.2.0",
         "cssnano": "^2.2.0",
         "grunt": "~0.4.2",
         "grunt-contrib-jshint": "~0.10.0",
