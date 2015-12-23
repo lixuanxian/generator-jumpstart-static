@@ -127,7 +127,42 @@ module.exports = function(grunt) {
         */
         swig: {
             options: {
-                templatePath: "<%%= pkg.paths.templates %>"
+                templatePath: "<%%= pkg.paths.templates %>",
+                data: function(){
+                    /**
+                    Take the .json file in the data directory,
+                    and then merge the objects together
+                    */
+                    var path = require("path"),
+                        fs = require("fs"),
+                        _ = require("lodash");
+
+                    var pathToDatafiles = path.join(grunt.file.readJSON("package.json")["templates"]["data"], "**/*.json");
+
+                    var dataFiles = grunt.file.glob.sync(pathToDatafiles),
+                        dataObj = {};
+                    
+                    dataFiles.forEach(function(df){
+                        var dataToMerge = {};
+
+                        var name = path.parse(df)["name"],
+                            data = grunt.file.readJSON(df);
+
+                        if (name === "data") {
+                            /**
+                            Variables within the data.json file are global.
+                            They can be used in templates without needing prefixes
+                            (e.g. {{var}} instead of {{data.var}})
+                            */
+                            dataToMerge = data;
+                        } else {
+                            dataToMerge[name] = data;   
+                        }
+
+                        dataObj = _.merge(dataObj, dataToMerge);
+                    })
+                    return dataObj;
+                }()
             },
             files: {
                 expand: true,
