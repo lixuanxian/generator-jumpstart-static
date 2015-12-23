@@ -34,7 +34,7 @@ To include vendor scripts (e.g. jQuery or Lodash) use `require(<package>)` eithe
 3. Follow the build wizard
 
 ## Permutations
-This generator is designed to scaffold static websites that make use of [**Assemble.js**](http://assemble.io/) and the [**Swig**](http://paularmstrong.github.io/swig/docs/) templating engine.
+This generator is designed to scaffold static websites using the [**Swig**](http://paularmstrong.github.io/swig/docs/) templating engine, and a Grunt task to compile.
 
 It also includes the following SCSS packages, all of which resolve to 0 bytes of CSS unless they are called.
 
@@ -65,9 +65,11 @@ All the packages required to run the above Gruntfile setup
 Contains "the files you edit". SCSS and javascript files to get you going.
 
 ##### Templates
-Contains the HTML template files. Best bet is to read the [Assemble documentation](http://assemble.io/docs/), and start with `index.swig` inside the `pages` directory.
+Contains the HTML template files. Best bet is to read the [Swig documentation](http://assemble.io/docs/), and start with `index.swig` inside the `pages` directory.
 
 Inside of the `layouts` directory you will find `base.swig`. This file contains a standard HTML5 document wrapper and includes the built out statics (`app.js`, `app.scss`, etc.)
+
+Swig uses the same syntax that Django developers will be familiar with.
 
 ### Build
 Contains "the files you don't edit". Target directory of all Grunt tasks responsible for building out the project (see the section on the Gruntfile.js, above). All the files inside of the `build` directory are on the *.gitignore* and are ephemeral. If they were deleted tomorrow and it causes you tears, you're probably doing it wrong.
