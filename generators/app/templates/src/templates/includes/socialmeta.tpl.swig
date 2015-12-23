@@ -1,4 +1,4 @@
-<!--
+{#
 Twitter - https://dev.twitter.com/cards/overview
 N.B. All cards require validation. Visit https://cards-dev.twitter.com/validator and validate your site
      Some cards require additional markup or different image dimensions. See twitter_cards for more details.
@@ -19,7 +19,7 @@ card (card type) - required - summary, summary_large_image, photo, gallery, app,
 image:src - target 1000x1000 - Absolute URL
 image:width - min. dim. 120x120
 image:height - min. dim. 120x120
--->
+#}
 
 <meta name="twitter:title" content="{{meta.title}}">
 <meta name="twitter:description" content="{{meta.description}}">
@@ -37,7 +37,7 @@ image:height - min. dim. 120x120
 <meta name="twitter:image:width" content="">
 <meta name="twitter:image:height" content="">
 
-<!--
+{#
 Facebook - https://developers.facebook.com/docs/opengraph/creating-custom-stories/#objecttypes-properties
 
 title
@@ -55,7 +55,7 @@ restrictions - Restrictions applied to the page (age, country, content, etc) - h
 
 see_also - Additional related links to the page
 ttl - Number of seconds before the page is re-scraped - Default 7 days
--->
+#}
 
 <meta property="og:title" content="{{meta.title}}">
 <meta property="og:description" content="{{meta.description}}">

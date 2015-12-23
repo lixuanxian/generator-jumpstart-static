@@ -57,7 +57,7 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ["<%%= jshint.files %>"],
-                tasks: ["jshint", "concat"]
+                tasks: ["jshint", "webpack:dev"]
             },
             scss: {
                 files: ["<%%= pkg.src.scss %>**/**/*.scss"],
@@ -80,7 +80,7 @@ module.exports = function(grunt) {
                     "<%%= pkg.paths.templates %>**/*.swig",
                     "<%%= pkg.templates.data %>**/*.{json,yml}"
                 ],
-                tasks: ["assemble"]
+                tasks: ["swig"]
             }
         },
         /**
@@ -125,22 +125,34 @@ module.exports = function(grunt) {
         /**
         Templating
         */
-        assemble : {
+        swig: {
             options: {
-                engine: "swig",
-                data: ["<%%= pkg.templates.data %>*.{json,yml}"],
-                assets: "<%%= pkg.paths.build %>",
-                partials: "<%%= pkg.templates.partials %>*.swig",
-                layoutdir: "<%%= pkg.templates.layouts %>",
-                layoutext: ".swig",
-                layout: "base",
-                flatten: true
+                templatePath: "<%%= pkg.paths.templates %>"
             },
-            pages: {
-                src: ["<%%= pkg.templates.pages %>*.swig"],
+            files: {
+                expand: true,
+                cwd: "<%%= pkg.templates.pages %>",
+                ext: ".html",
+                src: ["**/*.swig"],
                 dest: "<%%= pkg.paths.build %>"
-            }
+            },
         },
+        // assemble : {
+        //     options: {
+        //         engine: "swig",
+        //         data: ["<%%= pkg.templates.data %>*.{json,yml}"],
+        //         assets: "<%%= pkg.paths.build %>",
+        //         partials: "<%%= pkg.templates.partials %>*.swig",
+        //         layoutdir: "<%%= pkg.templates.layouts %>",
+        //         layoutext: ".swig",
+        //         layout: "base",
+        //         flatten: true
+        //     },
+        //     pages: {
+        //         src: ["<%%= pkg.templates.pages %>*.swig"],
+        //         dest: "<%%= pkg.paths.build %>"
+        //     }
+        // },
         /*
         Performance tasks
           -  Javascript linting
@@ -173,7 +185,7 @@ module.exports = function(grunt) {
                     app: "<%%= pkg.src.js %>app.js",
                     // Each additional bundle you require (e.g. index page js, or contact page js)
                     // should be added here and referenced as a script tag in the corresponding template
-                    // index: "<%= pkg.src.js %>index.js",
+                    // index: "<%%= pkg.src.js %>index.js",
                 },
                 output: {
                     path: "<%%= pkg.build.js %>",
@@ -191,32 +203,6 @@ module.exports = function(grunt) {
                 debug: true
             }
         },
-        // concat: {
-        //     options: {
-        //         separator: ";\n"
-        //     },
-        //     dist: {
-        //         src: [
-        //             <% if (jquery || foundation) { %>"<%%= pkg.paths.bower %>jquery/dist/jquery.min.js",<% } %>
-        //             <% if (lodash) { %>"<%%= pkg.paths.bower %>lodash/dist/lodash.min.js",<% } %>
-        //             <% if (moment) { %>"<%%= pkg.paths.bower %>moment/min/moment.min.js",<% } %>
-        //             "<%%= pkg.src.js %>app.js",
-        //             "<%%= pkg.src.js %>**/*.js"
-        //         ],
-        //         dest: "<%%= pkg.build.js %>app.js"
-        //     }
-        // },
-        // uglify: {
-        //     options: {
-        //         banner: "/*! <%%= pkg.name %> <%%= grunt.template.today('dd-mm-yyyy') %> */\n"
-        //     },
-        //     dist: {
-        //         files: {
-        //             "<%%= pkg.build.js %>app.js": ["<%%= concat.dist.dest %>"],
-        //             <% if (modernizr || foundation) { %>"<%%= pkg.build.js %>modernizr.min.js": ["<%%= pkg.paths.bower %>modernizr/modernizr.js"]<% } %>
-        //         }
-        //     },
-        // },
         postcss: {
             options: {
                 processors: [
@@ -289,11 +275,11 @@ module.exports = function(grunt) {
     });
 
 
-    require("load-grunt-tasks")(grunt, {pattern: ["grunt-*", "assemble"]});
+    require("load-grunt-tasks")(grunt, {pattern: ["grunt-*"]});
 
-    grunt.registerTask("base", ["assemble", "jshint", "concat", "uglify", "sass"])
-    grunt.registerTask("build", ["base", "copy"]);
-    grunt.registerTask("dist", ["clean", "base", "prettify", "cmq", "postcss", "copy:fonts", "imagemin", "webp"]);
+    grunt.registerTask("base", ["swig", "jshint", "sass"])
+    grunt.registerTask("build", ["base", "webpack:dev", "copy"]);
+    grunt.registerTask("dist", ["clean", "base", "webpack:prod", "prettify", "cmq", "postcss", "copy:fonts", "imagemin", "webp"]);
     grunt.registerTask("run", "connect");
 
 };

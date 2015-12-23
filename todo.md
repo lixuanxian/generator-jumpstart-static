@@ -4,3 +4,4 @@
 - Add Layzr with lowres placeholder image options
 - Isolate Gruntfile as a subgenerator
 - Modularise Grunt tasks
+- Autoadd author name and repository link to package.json
