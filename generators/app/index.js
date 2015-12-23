@@ -134,31 +134,15 @@ module.exports = generators.Base.extend({
                 */
                 this.appName = answers.name;
                 this.slugName = slug(this.appName);
-                // this.frontendPackages = answers.scsspkgs.concat(answers.jspkgs);
-
-                /**
-                Handle package dependent packages
-                */
-                // for (var i = dependent_packages.length - 1; i >= 0; i--) {
-                //     if (answers[dependent_packages[i].name]) {
-                //         this.frontendPackages.push(dependent_packages[i].name);
-                //     }
-                // };
 
                 /**
                 Define contextual variables for the whole build script.
-
-                Add each optional package as a boolean.
                 */
                 this.ctxVars = {
                     name: this.appName,
                     slugName: this.slugName,
                     // frontendPackages: this.frontendPackages,
                 };
-
-                // for (var i = 0; i < frontend_packages.length; i++) {
-                //     this.ctxVars[frontend_packages[i].value] = this.frontendPackages.indexOf(frontend_packages[i].value) > -1;
-                // };
 
                 /**
                 Resolve async
@@ -204,10 +188,10 @@ module.exports = generators.Base.extend({
             ".tpl.gitignore",
             ".tpl.bowerrc",
             "src/templates/data/data.tpl.json",
-            "src/templates/pages/index.tpl.swig",
-            "src/templates/includes/footer.tpl.swig",
-            "src/templates/includes/header.tpl.swig",
-            "src/templates/includes/socialmeta.tpl.swig",
+            "src/templates/pages/index.tpl.html",
+            "src/templates/includes/footer.tpl.html",
+            "src/templates/includes/header.tpl.html",
+            "src/templates/includes/socialmeta.tpl.html",
             "src/scss/_math.tpl.scss",
             "src/scss/_typography.tpl.scss",
             "src/scss/fonts.tpl.scss",
@@ -232,7 +216,7 @@ module.exports = generators.Base.extend({
 
         to_template = to_template.concat([
             "src/templates/data/meta.tpl.json",
-            "src/templates/layouts/base.tpl.swig"
+            "src/templates/layouts/base.tpl.html"
         ]);
 
         this.ctxVars["build_location"] = "build/";

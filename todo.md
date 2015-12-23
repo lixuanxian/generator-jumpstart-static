@@ -5,3 +5,4 @@
 - Isolate Gruntfile as a subgenerator
 - Modularise Grunt tasks
 - Auto-add author name and repository link to package.json
+- Use .html instead of .swig extension in template files

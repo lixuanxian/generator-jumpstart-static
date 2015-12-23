@@ -168,26 +168,10 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: "<%%= pkg.templates.pages %>",
                 ext: ".html",
-                src: ["**/*.swig"],
+                src: ["**/*.html", "**/*.swig"],
                 dest: "<%%= pkg.paths.build %>"
             },
         },
-        // assemble : {
-        //     options: {
-        //         engine: "swig",
-        //         data: ["<%%= pkg.templates.data %>*.{json,yml}"],
-        //         assets: "<%%= pkg.paths.build %>",
-        //         partials: "<%%= pkg.templates.partials %>*.swig",
-        //         layoutdir: "<%%= pkg.templates.layouts %>",
-        //         layoutext: ".swig",
-        //         layout: "base",
-        //         flatten: true
-        //     },
-        //     pages: {
-        //         src: ["<%%= pkg.templates.pages %>*.swig"],
-        //         dest: "<%%= pkg.paths.build %>"
-        //     }
-        // },
         /*
         Performance tasks
           -  Javascript linting
@@ -305,6 +289,18 @@ module.exports = function(grunt) {
                 ext: ".html",
                 src: ["*.html"],
                 dest: "<%%= pkg.paths.build %>"
+            }
+        },
+        modernizr: {
+            dist: {
+                "dest" : "<%%= pkg.build.js %>modernizr.min.js",
+                "parseFiles": true,
+                "customTests": [],
+                "uglify": true
+                "tests": [
+                    // Tests to explicitly include
+                ],
+                "options": [],
             }
         },
     });
