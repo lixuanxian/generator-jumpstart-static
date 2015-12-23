@@ -303,6 +303,14 @@ module.exports = function(grunt) {
                 "options": [],
             }
         },
+        surge: {
+            '<%%= pkg.name %>': {
+                options: {
+                    project: "<%%= pkg.paths.build %>",
+                    domain: null
+                }
+            }
+        },
     });
 
 

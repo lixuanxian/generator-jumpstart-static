@@ -1,6 +1,6 @@
 {
   "name": "generator-jumpstart-static",
-  "title": "Static Site Scaffold for not Fancy Guys",
+  "title": "A Static Site Scaffold for Not Too Fancy Guys",
   "description": "My personal project scaffold for rapid setup of Assemble generated static sites.",
   "version": "2.1.1",
   "author": "Max Barry",
@@ -13,7 +13,6 @@
   },
   "readmeFilename": "Readme.md",
   "keywords": [
-    "assemble",
     "static",
     "templates",
     "generator",
@@ -21,8 +20,7 @@
     "scaffold",
     "yeoman",
     "bourbon",
-    "neat",
-    "foundation",
+    "swig",
     "yeoman-generator"
   ],
   "dependencies": {

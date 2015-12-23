@@ -20,6 +20,7 @@
         "grunt-prettify": "~0.3.5",
         "grunt-postcss": "^0.7.1",
         "grunt-swig-templates": "^0.1.4",
+        "grunt-surge": "^0.6.2",
         "grunt-bump": "^0.3.1",
         "grunt-webpack": "^1.0.11",
         "webp-bin": "~0.1.4",
