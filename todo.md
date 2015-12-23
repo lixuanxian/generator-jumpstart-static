@@ -1,3 +1,6 @@
 - Add extensions directory and file for Swig Assemble Projects
 - Deploys via Surge
 - Grunt-Modernizr
+- Add Layzr with lowres placeholder image options
+- Isolate Gruntfile as a subgenerator
+- Modularise Grunt tasks

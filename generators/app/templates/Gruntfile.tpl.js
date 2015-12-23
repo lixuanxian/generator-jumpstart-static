@@ -167,6 +167,30 @@ module.exports = function(grunt) {
                 }
             }
         },
+        webpack: {
+            options: {
+                entry: {
+                    app: "<%%= pkg.src.js %>app.js",
+                    // Each additional bundle you require (e.g. index page js, or contact page js)
+                    // should be added here and referenced as a script tag in the corresponding template
+                    // index: "<%= pkg.src.js %>index.js",
+                },
+                output: {
+                    path: "<%%= pkg.build.js %>",
+                    filename: "[name].js"
+                },
+                plugins: []
+            },
+            prod: {
+                plugins: [
+                    new webpackModule.optimize.DedupePlugin(),
+                    new webpackModule.optimize.UglifyJsPlugin()
+                ]
+            },
+            dev: {
+                debug: true
+            }
+        },
         // concat: {
         //     options: {
         //         separator: ";\n"
