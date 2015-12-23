@@ -13,10 +13,6 @@
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/fonts.css">
 
-    <% if (modernizr || foundation) { %>
-    <script src="/js/modernizr.min.js"></script>
-    <% } %>
-
 </head>
 
 <body>
@@ -24,6 +20,7 @@
 {{>body}}
 {% include "src/templates/includes/footer.swig" %}
 <script src="/js/app.js"></script>
+{% block extrajs %}{% endblock %}
 </body>
 
 </html>

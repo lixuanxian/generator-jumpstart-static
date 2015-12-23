@@ -119,10 +119,10 @@ module.exports = generators.Base.extend({
         var done = this.async();
         var prompts = [];
 
-        prompts.unshift({
+        prompts.push({
             type: "input",
             name: "name",
-            message: "Your project's name",
+            message: "What is the name of your project?",
             default: this.appname
         });
 
@@ -134,7 +134,7 @@ module.exports = generators.Base.extend({
                 */
                 this.appName = answers.name;
                 this.slugName = slug(this.appName);
-                this.frontendPackages = answers.scsspkgs.concat(answers.jspkgs);
+                // this.frontendPackages = answers.scsspkgs.concat(answers.jspkgs);
 
                 /**
                 Handle package dependent packages
