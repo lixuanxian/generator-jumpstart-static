@@ -1,3 +1,5 @@
+var webpackModule = require("webpack");
+
 module.exports = function(grunt) {
 
     grunt.initConfig({
@@ -10,11 +12,9 @@ module.exports = function(grunt) {
         sass: {
             options: {
                 includePaths: [
-                    <% if (bourbon) { %>'<%%= pkg.paths.bower %>bourbon/app/assets/stylesheets/',<% } %>
-                    <% if (neat) { %>'<%%= pkg.paths.bower %>neat/app/assets/stylesheets/',<% } %>
-                    <% if (mey_reset) { %>'<%%= pkg.paths.bower %>reset-scss/',<% } %>
-                    <% if (scut) { %>'<%%= pkg.paths.bower %>scut/dist/',<% } %>
-                    <% if (foundation) { %>'<%%= pkg.paths.bower %>foundation/scss/',<% } %>
+                    '<%%= pkg.paths.bower %>bourbon/app/assets/stylesheets/',
+                    '<%%= pkg.paths.bower %>reset-scss/',
+                    '<%%= pkg.paths.bower %>scut/dist/',
                 ]
             },
             dist: {
@@ -167,32 +167,32 @@ module.exports = function(grunt) {
                 }
             }
         },
-        concat: {
-            options: {
-                separator: ";\n"
-            },
-            dist: {
-                src: [
-                    <% if (jquery || foundation) { %>"<%%= pkg.paths.bower %>jquery/dist/jquery.min.js",<% } %>
-                    <% if (lodash) { %>"<%%= pkg.paths.bower %>lodash/dist/lodash.min.js",<% } %>
-                    <% if (moment) { %>"<%%= pkg.paths.bower %>moment/min/moment.min.js",<% } %>
-                    "<%%= pkg.src.js %>app.js",
-                    "<%%= pkg.src.js %>**/*.js"
-                ],
-                dest: "<%%= pkg.build.js %>app.js"
-            }
-        },
-        uglify: {
-            options: {
-                banner: "/*! <%%= pkg.name %> <%%= grunt.template.today('dd-mm-yyyy') %> */\n"
-            },
-            dist: {
-                files: {
-                    "<%%= pkg.build.js %>app.js": ["<%%= concat.dist.dest %>"],
-                    <% if (modernizr || foundation) { %>"<%%= pkg.build.js %>modernizr.min.js": ["<%%= pkg.paths.bower %>modernizr/modernizr.js"]<% } %>
-                }
-            },
-        },
+        // concat: {
+        //     options: {
+        //         separator: ";\n"
+        //     },
+        //     dist: {
+        //         src: [
+        //             <% if (jquery || foundation) { %>"<%%= pkg.paths.bower %>jquery/dist/jquery.min.js",<% } %>
+        //             <% if (lodash) { %>"<%%= pkg.paths.bower %>lodash/dist/lodash.min.js",<% } %>
+        //             <% if (moment) { %>"<%%= pkg.paths.bower %>moment/min/moment.min.js",<% } %>
+        //             "<%%= pkg.src.js %>app.js",
+        //             "<%%= pkg.src.js %>**/*.js"
+        //         ],
+        //         dest: "<%%= pkg.build.js %>app.js"
+        //     }
+        // },
+        // uglify: {
+        //     options: {
+        //         banner: "/*! <%%= pkg.name %> <%%= grunt.template.today('dd-mm-yyyy') %> */\n"
+        //     },
+        //     dist: {
+        //         files: {
+        //             "<%%= pkg.build.js %>app.js": ["<%%= concat.dist.dest %>"],
+        //             <% if (modernizr || foundation) { %>"<%%= pkg.build.js %>modernizr.min.js": ["<%%= pkg.paths.bower %>modernizr/modernizr.js"]<% } %>
+        //         }
+        //     },
+        // },
         postcss: {
             options: {
                 processors: [
