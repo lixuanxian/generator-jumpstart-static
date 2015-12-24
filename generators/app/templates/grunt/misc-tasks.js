@@ -19,6 +19,7 @@ module.exports = {
     connect: {
         options: {
             keepalive: true,
+            open: true,
             base: "<%= package.paths.build %>"
         }
     }

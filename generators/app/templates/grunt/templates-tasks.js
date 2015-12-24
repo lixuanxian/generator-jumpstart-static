@@ -56,6 +56,13 @@ module.exports = {
             dest: "<%= package.paths.build %>"
         }]
     },
+    htmllint: {
+        files: [{
+            expand: true,
+            cwd: "<%= package.paths.build %>",
+            src: ["**/*.html"],
+        }]
+    },
     watch: {
         files: [
             "<%= package.paths.templates %>**/*.html",
