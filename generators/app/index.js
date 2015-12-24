@@ -1,4 +1,3 @@
-"use strict";
 
 var generators = require("yeoman-generator"),
     _ = require("lodash"),
@@ -60,7 +59,7 @@ module.exports = generators.Base.extend({
 
         for (var i = 0; i < directories_to_make.length; i++) {
             mkdirp(directories_to_make[i]);
-        };
+        }
     },
     writing: function() {
         var _this = this;
@@ -82,7 +81,7 @@ module.exports = generators.Base.extend({
             // Copy in all the html and data files
             // EXCEPT base.html and meta.json, which require templating
             "./src/templates/**/!(meta|base).{html,json}"
-        ].map(function(el){ return  glob.sync(_this.templatePath(el)) }));
+        ].map(function(el){ return  glob.sync(_this.templatePath(el)); }));
 
         /**
         The globbing returns absolute paths to the source (generator template) files.

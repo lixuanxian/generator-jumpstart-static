@@ -1,6 +1,5 @@
 - Add extensions directory for Swig helpers
 - Add Layzr with lowres placeholder image options
 - Isolate Gruntfile as a subgenerator
-- Modularise Grunt tasks
 - Auto-add author name and repository link to package.json
 - Hash scripts and links on deploy
