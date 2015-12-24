@@ -1,115 +1,10 @@
-"use strict"
+"use strict";
+
 var generators = require("yeoman-generator"),
-    ld = require("lodash"),
-    slug = require("slug");
-
-var prompts = [];
-
-/**
-Prompts user with a checklist of packages to be installed on project.
-
-frontend_packages contains the list of packages within that checklist.
-*/
-// var frontend_packages = [{
-//     name: "jQuery (> 2.0)",
-//     value: "jquery",
-//     checked: true,
-//     bower_package: "jquery",
-//     version: "^2.1.1",
-//     category: "js"
-// }, {
-//     name: "Modernizr ~ Browser feature detection",
-//     value: "modernizr",
-//     checked: true,
-//     bower_package: "modernizr",
-//     version: "^2.8.3",
-//     category: "js"
-// }, {
-//     name: "Lo-Dash ~ Advanced list & object manipulation",
-//     value: "lodash",
-//     checked: false,
-//     bower_package: "lodash",
-//     version: "^3.10.1",
-//     category: "js"
-// }, {
-//     name: "Moment.js ~ Time & date helpers",
-//     value: "moment",
-//     checked: false,
-//     bower_package: "moment",
-//     version: "~2.8.4",
-//     category: "js"
-// }, {
-//     name: "Eric Meyer's CSS Reset",
-//     value: "mey_reset",
-//     checked: true,
-//     bower_package: "reset-scss",
-//     category: "scss"
-// }, {
-//     name: "Bourbon",
-//     value: "bourbon",
-//     checked: true,
-//     bower_package: "bourbon",
-//     version: "^4.0.1",
-//     category: "scss"
-// }, {
-//     name: "Scut",
-//     value: "scut",
-//     checked: true,
-//     bower_package: "scut",
-//     version: "^1.2.1",
-//     category: "scss"
-// }, {
-//     name: "Foundation",
-//     value: "foundation",
-//     checked: false,
-//     bower_package: "foundation",
-//     version: "^5.4.7",
-//     category: "scss"
-// }];
-
-/**
-Prompts user with a checklist of packages to be installed on project
-*/
-// prompts = prompts.concat([{
-//     type: "checkbox",
-//     name: "jspkgs",
-//     message: "Javascript packages to include in your project",
-//     choices: ld.filter(frontend_packages, {
-//         category: "js"
-//     })
-// }, {
-//     type: "checkbox",
-//     name: "scsspkgs",
-//     message: "SCSS packages to include in your project",
-//     choices: ld.filter(frontend_packages, {
-//         category: "scss"
-//     })
-// }]);
-
-/**
-Prompts for further packages that depend on the initial packages selected.
-*/
-// var dependent_packages = [{
-//     when: function(response) {
-//         return response.scsspkgs.indexOf("bourbon") > -1;
-//     },
-//     type: "confirm",
-//     name: "neat",
-//     message: "You've included Bourbon in this project. Would you also like to add the SCSS grid framework Neat?",
-//     default: true,
-//     bower_package: "neat",
-//     version: "^1.7.0",
-//     value: "neat"
-// }, ];
-
-// prompts = prompts.concat(dependent_packages);
-
-/**
-frontend_packages needs updating with the dependent_packages so that they can be
-installed alongside the other packages, at a later phase of the scaffold.
-*/
-// frontend_packages = frontend_packages.concat(dependent_packages);
-
+    _ = require("lodash"),
+    slug = require("slug"),
+    glob = require("glob-all"),
+    mkdirp = require('mkdirp');
 
 /**
 Main setup function
@@ -129,24 +24,19 @@ module.exports = generators.Base.extend({
         this.prompt(
             prompts,
             function(answers) {
-                /**
-                Basic app settings
-                */
+                // Basic app settings
                 this.appName = answers.name;
                 this.slugName = slug(this.appName);
 
-                /**
-                Define contextual variables for the whole build script.
-                */
+                // Define contextual variables for the whole build script.
                 this.ctxVars = {
                     name: this.appName,
                     slugName: this.slugName,
-                    // frontendPackages: this.frontendPackages,
+                    build_location: "./build/",
+                    src_location: "./src/"
                 };
 
-                /**
-                Resolve async
-                */
+                // Resolve async
                 done();
             }.bind(this)
         );
@@ -154,107 +44,85 @@ module.exports = generators.Base.extend({
     scaffoldFolders: function() {
         var _this = this;
 
-        /**
-        Basic directory operations
-        */
+        // Make the required directories
         this.log("Creating required directories...");
         var directories_to_make = [
-            "src",
+            "grunt",
             "src/js",
             "src/scss",
             "src/img",
             "src/fonts",
-            "src/templates",
-        ];
-
-        directories_to_make = directories_to_make.concat([
             "src/templates/data",
             "src/templates/includes",
             "src/templates/layouts",
             "src/templates/pages",
-        ]);
+        ];
 
         for (var i = 0; i < directories_to_make.length; i++) {
-            _this.mkdir(directories_to_make[i])
+            mkdirp(directories_to_make[i]);
         };
     },
     writing: function() {
         var _this = this;
-        /**
-        Basic copy operations
-        */
+
+        // Basic copy operations
         this.log("Copying files...");
-        var to_copy = [
-            ".tpl.gitignore",
-            ".tpl.bowerrc",
-            "src/templates/data/data.tpl.json",
-            "src/templates/pages/index.tpl.html",
-            "src/templates/includes/footer.tpl.html",
-            "src/templates/includes/header.tpl.html",
-            "src/templates/includes/socialmeta.tpl.html",
-            "src/scss/_math.tpl.scss",
-            "src/scss/_typography.tpl.scss",
-            "src/scss/fonts.tpl.scss",
-            "src/js/app.tpl.js",
-            "src/scss/_settings.tpl.scss",
-            "src/scss/app.tpl.scss",
-        ];
 
-        for (var i = to_copy.length - 1; i >= 0; i--) {
-            _this.copy(to_copy[i], to_copy[i].replace(".tpl", ""));
-        };
+        var to_copy = _.flatten([
+            // Find root level files
+            ".gitignore",
+            ".bowerrc",
+            "./Gruntfile.js",
+            // Find all scss files
+            "./src/scss/**/*.scss",
+            // Find all js files
+            "./src/js/**/*.js",
+            // Find all grunt tasks
+            "./grunt/**/*.{js,yml}",
+            // Copy in all the html and data files
+            // EXCEPT base.html and meta.json, which require templating
+            "./src/templates/**/!(meta|base).{html,json}"
+        ].map(function(el){ return  glob.sync(_this.templatePath(el)) }));
 
         /**
-        Files requiring templating
+        The globbing returns absolute paths to the source (generator template) files.
+        You need to effectively subtract this root source folder (sourceRoot),
+        from the last bit of the filepath (d:/.../generator/templates/<file>.<ext> -> <file>.<ext>).
+        That is then resolved against detinationPath to get the absolute target destination.
         */
+        var sourceRoot = _this.sourceRoot().replace(/\\/g,'/').replace(/\/?$/, '/');
+
+        to_copy.forEach(function(t){
+            var d = _this.destinationPath(t.replace(sourceRoot, ""));
+            _this.fs.copy(t, d);
+        });
+
+        // Files requiring templating
         this.log("Templating files...");
+        
         var to_template = [
-            "bower.tpl.json",
-            "package.tpl.json",
-            "Gruntfile.tpl.js",
+            "./bower.json",
+            "./package.json",
+            "./src/templates/data/meta.json",
+            "./src/templates/layouts/base.html"
         ];
 
-        to_template = to_template.concat([
-            "src/templates/data/meta.tpl.json",
-            "src/templates/layouts/base.tpl.html"
-        ]);
-
-        this.ctxVars["build_location"] = "build/";
-        this.ctxVars["src_location"] = "src/";
-
-        for (var i = to_template.length - 1; i >= 0; i--) {
-            _this.template(
-                to_template[i],
-                to_template[i].replace(".tpl", ""),
-                this.ctxVars
+        to_template.forEach(function(targ){
+            _this.fs.copyTpl(
+                _this.templatePath(targ),
+                _this.destinationPath(targ),
+                _this.ctxVars
             );
-        };
+        });
+
     },
     install: function() {
         this.log("Installing dependencies");
-        /**
-        Install Node packages
-        */
+        
+        // Install Node packages
         this.npmInstall();
 
-        /**
-        Create array of Bower packages and versions
-        */
-        // var for_bower_to_install = [],
-        //     fpkg, fpkg_ver;
-
-        // for (var i = 0; i < frontend_packages.length; i++) {
-        //     fpkg = frontend_packages[i];
-
-        //     if (this.frontendPackages.indexOf(fpkg.value) > -1) {
-        //         fpkg_ver = ld.has(fpkg, "version") ? fpkg.bower_package + "#" + fpkg.version : fpkg.bower_package;
-        //         for_bower_to_install.push(fpkg_ver);
-        //     }
-        // };
-
-        /**
-        Install Bower packages
-        */
+        // Install Bower packages
         this.bowerInstall([
             "bourbon#^4.0.1",
             "scut#^1.2.1",
