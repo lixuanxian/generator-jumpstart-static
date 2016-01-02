@@ -1,9 +1,4 @@
-
 var generators = require("yeoman-generator"),
-    _ = require("lodash"),
-    slug = require("slug"),
-    glob = require("glob-all"),
-    mkdirp = require('mkdirp'),
     common = require("../common");
 
 /**
