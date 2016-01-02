@@ -63,6 +63,8 @@ A pre-fabbed Grunfile with everything you need to build the project, set a watch
 
 `grunt docco` ~ Creates documentation for your javascript files.
 
+`grunt deploy` ~ Deploy the application to Surge web service. [Surge](https://surge.sh/) host static sites really well. Customise the Grunt configuration to set a custom domain.
+
 ### package.json
 All the packages required to run the above Gruntfile setup
 
