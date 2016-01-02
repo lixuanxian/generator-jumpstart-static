@@ -36,6 +36,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks("grunt-jsbeautifier");
 
-    grunt.registerTask("deploy", ["jshint", "jsbeautifier", "bump"]);
+    grunt.registerTask("deploy", ["jshint", "bump", "jsbeautifier"]);
 
 };

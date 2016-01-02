@@ -17,7 +17,7 @@ module.exports.templateStuff = function(context, files, params) {
         );
     });
 
-}
+};
 
 module.exports.copyStuff = function(context, files) {
     context.log("Copying files...");
@@ -41,7 +41,7 @@ module.exports.copyStuff = function(context, files) {
         var d = context.destinationPath(t.replace(sourceRoot, ""));
         context.fs.copy(t, d);
     });
-}
+};
 
 module.exports.directoryStuff = function(directories) {
     var mkdirp = require("mkdirp");
@@ -49,7 +49,7 @@ module.exports.directoryStuff = function(directories) {
     for (var i = 0; i < directories.length; i++) {
         mkdirp(directories[i]);
     }
-}
+};
 
 // module.exports.promptStuff = function(context, callback) {
 
