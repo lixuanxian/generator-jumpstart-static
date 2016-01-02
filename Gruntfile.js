@@ -13,7 +13,7 @@ module.exports = function(grunt) {
         },
         jshint: {
             files: {
-                src: [ "./generators/app/**/*.js" ]
+                src: [ "./generators/**/*.js" ]
             },
             options: {
                 globals: {
@@ -28,12 +28,14 @@ module.exports = function(grunt) {
             }
         },
         jsbeautifier : {
-            src: [ "./generators/app/templates/**/*.js" ]
+            src: [ "./generators/templates/**/*.js" ]
         }
     });
 
     grunt.loadNpmTasks('grunt-bump');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks("grunt-jsbeautifier");
+
+    grunt.registerTask("deploy", ["jshint", "jsbeautifier", "bump"]);
 
 };
