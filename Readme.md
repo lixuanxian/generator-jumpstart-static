@@ -9,6 +9,11 @@ A [**Yeoman**](http://yeoman.io/) generator for scaffolding new static sites.
 
 ## Changelog
 
+### v2.5.0
+**Added** Gruntfile and task configuration is now a subgenerator, so can be deployed independent of a full generator.
+
+**Removed** All prompts. The name of the build directory is now used to tailor the generated code.
+
 ### v2.0.0
 **Removed** client side prompts. I've decided to make the generator much more opinionated. There are no longer prompts for javascript and SCSS packages. Instead this application ships with Bourbon, Scut, and Eric Meyer's CSS reset (in SCSS form).
 
