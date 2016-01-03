@@ -6,12 +6,12 @@ base:
     - "swig"
     - "jshint"
     - "sass"
-    - "webpack"
 
 build:
   description: "Development environment build"
   tasks:
     - "base"
+    - "webpack:js_dev"
     - "copy"
 
 dist:
@@ -19,6 +19,7 @@ dist:
   tasks:
     - "clean"
     - "base"
+    - "webpack:js"
     - "prettify"
     - "cmq"
     - "postcss"

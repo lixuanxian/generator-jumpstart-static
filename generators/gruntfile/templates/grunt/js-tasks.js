@@ -30,7 +30,18 @@ module.exports = {
         plugins: [
             new webpackModule.optimize.DedupePlugin(),
             new webpackModule.optimize.UglifyJsPlugin()
-        ]
+        ],
+        resolve: {
+            extensions: ['', '.js', '.jsx',] 
+        }
+    },
+    webpack__dev: {
+        debug: true,
+        devtool: "eval",
+        entry: "<%= webpack.js.entry %>",
+        output: "<%= webpack.js.output %>",
+        // module: "<%= webpack.js.module %>",
+        resolve: "<%= webpack.js.resolve %>"
     },
     modernizr: {
         dest: "<%= package.build.js %>modernizr.min.js",
@@ -50,6 +61,6 @@ module.exports = {
     },
     watch: {
         files: ["<%= package.src.js %>**/*.js"],
-        tasks: ["jshint", "webpack"]
+        tasks: ["jshint", "webpack:js_dev"]
     }
 };
