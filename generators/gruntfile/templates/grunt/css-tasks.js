@@ -28,7 +28,7 @@ module.exports = {
         files: [{
             expand: true,
             cwd: "<%= package.build.css %>",
-            src: "**/*.css",
+            src: ["**/*.css", "!font.css"], // There is a weird bug with Postcss that freaks at fontfaces
             dest: "<%= package.build.css %>"
         }]
     },
