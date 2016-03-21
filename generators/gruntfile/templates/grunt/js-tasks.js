@@ -51,7 +51,9 @@ module.exports = {
         tests: [
             // Tests to explicitly include
         ],
-        options: []
+        options: [
+            "setClasses"
+        ]
     },
     docco: {
         src: ["<%= package.src.js %>**/*.js"],
