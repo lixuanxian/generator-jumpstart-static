@@ -52,7 +52,10 @@ module.exports = {
             // Tests to explicitly include
         ],
         options: [
-            "setClasses"
+            "setClasses",
+            "addTest",
+            "domPrefixes",
+            "prefixes",
         ]
     },
     docco: {
