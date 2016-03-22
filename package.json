@@ -2,7 +2,7 @@
   "name": "generator-jumpstart-static",
   "title": "A Static Site Scaffold for Not Too Fancy Guys",
   "description": "My personal project scaffold for rapid setup of Assemble generated static sites.",
-  "version": "2.5.15",
+  "version": "2.5.16",
   "author": "Max Barry",
   "license": "MIT",
   "homepage": "https://github.com/max-barry/generator-jumpstart-static",
