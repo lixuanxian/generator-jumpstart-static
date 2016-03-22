@@ -62,7 +62,6 @@ h1 {
 
 h2 {
     font-size: calculate_fontsize($body-font-size, $scale-factor, $h2-multip);
-    font-size: round($body-font-size * power($scale-factor, $h2-multip));
     font-family: $heavy-font-family;
     line-height: calculate_lineheight($blh, $h2-multip, $body-font-size, $scale-factor);
     margin-top: $blh * 2;
