@@ -2,7 +2,7 @@ module.exports = {
     sass: {
         options: {
             includePaths: [
-                '<%= package.paths.bower %>bourbon/dist/',
+                '<%= package.paths.bower %>bourbon/app/assets/stylesheets/',
                 '<%= package.paths.bower %>reset-scss/',
                 '<%= package.paths.bower %>scut/dist/'
             ]
