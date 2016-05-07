@@ -31,7 +31,7 @@ deploy:
   description: "Deploy the build to a Surge.sh server"
   tasks:
     - "dist"
-    - "cacheBust"
+    #- "cacheBust"
     - "surge"
 
 run:
