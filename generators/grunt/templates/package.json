@@ -1,0 +1,78 @@
+{
+    "name": "<%= slugName %>",
+    "title": "<%= name %>",
+    "description": "",
+    "version": "0.0.1gi",
+    "keywords": [],
+    "scripts": {
+        "postinstall": "bower install && grunt dist"
+    },
+    "devDependencies": {
+        "autoprefixer": "^6.2.0",
+        "cssnano": "^3.5.2",
+        "grunt": "~1.0.1",
+        "grunt-cache-bust": "^1.3.0",
+        "grunt-contrib-jshint": "^1.0.0",
+        "grunt-sass": "^1.1.0",
+        "grunt-contrib-watch": "^1.0.0",
+        "grunt-contrib-copy": "^1.0.0",
+        "grunt-contrib-connect": "^1.0.2",
+        "grunt-contrib-imagemin": "^1.0.0",
+        "grunt-docco": "^0.4.0",
+        "grunt-contrib-clean": "^1.0.0",
+        "grunt-html": "^7.0.0",
+        "grunt-modernizr": "^1.0.1",
+        "grunt-prettify": "^0.4.0",
+        "grunt-postcss": "^0.8.0",
+        "grunt-swig-templates": "^0.1.4",
+        "grunt-surge": "^0.7.0",
+        "grunt-bump": "^0.8.0",
+        "grunt-webpack": "^1.0.11",
+        "webpack-dev-server": "^1.14.0",
+        "webpack": "^1.12.9",
+        "webp-bin": "~0.1.4",
+        "grunt-webp": "^0.0.4",
+        "pixrem": "^3.0.0",
+        "grunt-combine-media-queries": "^1.0.19",
+        "time-grunt": "^1.3.0",
+        "lodash": "^4.11.2",
+        "load-grunt-config": "^0.19.1",
+        "jit-grunt": "^0.10.0"
+    },
+    "author": {
+        "name": ""
+    },
+    "main": "Gruntfile.js",
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "license": "MIT",
+    "readmeFilename": "Readme.md",
+    "paths": {
+        "project": "<%= src_location %>",
+        "templates": "<%= src_location %>templates/",
+        "build": "<%= build_location %>",
+        "tmp": "./tmp/",
+        "bower": "./bower_components/",
+        "node": "./node_modules/"
+    },
+    "build": {
+        "js": "<%= build_location %>js/",
+        "fonts": "<%= build_location %>fonts/",
+        "images": "<%= build_location %>img/",
+        "css": "<%= build_location %>css/"
+    },
+    "src": {
+        "js": "<%= src_location %>js/",
+        "scss": "<%= src_location %>scss/",
+        "fonts": "<%= src_location %>fonts/",
+        "images": "<%= src_location %>img/"
+    },
+    "templates": {
+        "pages": "<%= src_location %>templates/pages/",
+        "includes": "<%= src_location %>templates/includes/",
+        "data": "<%= src_location %>templates/data/",
+        "layouts": "<%= src_location %>templates/layouts/"
+    }
+}
