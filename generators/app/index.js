@@ -26,9 +26,9 @@ module.exports = generators.Base.extend({
     writing: function() {
         var _this = this;
 
+        // Glob and then copy all matching files
         var to_glob = [
             // Find root level files
-            ".gitignore",
             ".bowerrc",
             // Find all scss files
             "./src/scss/**/*.scss",
@@ -41,22 +41,26 @@ module.exports = generators.Base.extend({
 
         common.copyStuff(_this, to_glob);
 
+        // Copy gitignore separately
+        _this.copy(_this.templatePath('.tpl.gitignore'), _this.destinationPath('.gitignore'))
+
         var to_template = [
             "./bower.json",
             "./src/templates/data/meta.json",
             "./src/templates/layouts/base.html"
         ];
 
+        // Some files require templating
         common.templateStuff(_this, to_template);
 
         // Build the Gruntfile which sits as a subgenerator
-        this.log("Building the Gruntfile");
-        this.composeWith("jumpstart-static:gruntfile", {});
+        this.log("Building the Gulpfile");
+        this.composeWith("jumpstart-static:gulp", {});
 
     },
     install: function() {
         this.log("Installing dependencies");
-        
+
         // Install Node packages
         this.npmInstall();
 
@@ -69,11 +73,5 @@ module.exports = generators.Base.extend({
 
     },
     end: function() {
-        /**
-        Do an initial Grunt build
-        */
-        this.log("Doing an initial build");
-        this.spawnCommand("grunt", ["build"]);
-
     }
 });
