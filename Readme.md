@@ -85,5 +85,3 @@ Swig uses the same syntax that Django developers will be familiar with.
 
 ### Build
 Contains "the files you don't edit". Destination directory of all Gulp tasks responsible for building out the project (see the section on the `gulpfile.js`). All the files inside of the `build` directory are on the *.gitignore* and are ephemeral. If they were deleted tomorrow and it causes you tears, you're probably doing it wrong.
-
-### Other stuff!
