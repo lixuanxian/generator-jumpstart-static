@@ -1,47 +1,76 @@
 {
-  "name": "generator-jumpstart-static",
-  "title": "A Static Site Scaffold for Not Too Fancy Guys",
-  "description": "My personal project scaffold for rapid setup of Assemble generated static sites.",
-  "version": "3.0.0",
-  "author": "Max Barry",
-  "license": "MIT",
-  "homepage": "https://github.com/max-barry/generator-jumpstart-static",
-  "main": "Gruntfile.js",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:max-barry/generator-jumpstart-static.git"
-  },
-  "readmeFilename": "Readme.md",
-  "keywords": [
-    "static",
-    "templates",
-    "generator",
-    "project",
-    "gruntfile",
-    "scaffold",
-    "yeoman",
-    "bourbon",
-    "swig",
-    "yeoman-generator"
-  ],
-  "dependencies": {
-    "glob-all": "^3.0.1",
-    "lodash": "^2.4.1",
-    "mkdirp": "^0.5.1",
-    "slug": "~0.8.0",
-    "yeoman-generator": ">=0.18.3",
-    "yo": ">=1.1.2"
-  },
-  "devDependencies": {
-    "grunt": ">=0.4.2",
-    "grunt-bump": "~0.0.16",
-    "grunt-contrib-jshint": "^0.11.3",
-    "grunt-jsbeautifier": "^0.2.10"
-  },
-  "engines": {
-    "node": ">=0.10.0",
-    "npm": ">=1.2.10",
-    "bower": ">=1.3.0",
-    "sass": ">=3.4.0"
-  }
+    "name": "<%= slugName %>",
+    "title": "<%= name %>",
+    "description": "",
+    "version": "0.0.1gi",
+    "keywords": [],
+    "scripts": {
+        "postinstall": "bower install && gulp --env production"
+    },
+    "author": {
+        "name": ""
+    },
+    "main": "gulpfile.js",
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "license": "MIT",
+    "readmeFilename": "Readme.md",
+    "devDependencies": {
+        "autoprefixer": "^6.2.0",
+        "cssnano": "^3.5.2",
+        "del": "^2.2.0",
+        "gulp": "github:gulpjs/gulp#4.0",
+        "gulp-bump": "^2.1.0",
+        "gulp-cache-bust": "^1.0.2",
+        "gulp-cached": "^1.1.0",
+        "gulp-changed": "^1.3.0",
+        "gulp-connect": "^4.0.0",
+        "gulp-environments": "^0.1.1",
+        "gulp-hub": "^0.7.1",
+        "gulp-imagemin": "^3.0.1",
+        "gulp-jshint": "^2.0.1",
+        "gulp-modernizr": "^1.0.0-alpha",
+        "gulp-postcss": "^6.1.1",
+        "gulp-prettify": "^0.4.0",
+        "gulp-sass": "^2.3.1",
+        "gulp-sourcemaps": "^1.6.0",
+        "gulp-surge": "^0.1.0",
+        "gulp-swig": "^0.8.0",
+        "gulp-uglify": "^1.5.3",
+        "gulp-util": "^3.0.7",
+        "gulp-webp": "^2.3.0",
+        "jshint": "^2.9.2",
+        "jshint-stylish": "^2.2.0",
+        "pixrem": "^3.0.0",
+        "require-dir": "^0.3.0",
+        "webpack": "^1.13.0"
+    },
+    "paths": {
+        "project": "<%= src_location %>",
+        "templates": "<%= src_location %>templates/",
+        "build": "<%= build_location %>",
+        "tmp": "./tmp/",
+        "bower": "./bower_components/",
+        "node": "./node_modules/"
+    },
+    "build": {
+        "js": "<%= build_location %>js/",
+        "fonts": "<%= build_location %>fonts/",
+        "images": "<%= build_location %>img/",
+        "css": "<%= build_location %>css/"
+    },
+    "src": {
+        "js": "<%= src_location %>js/",
+        "scss": "<%= src_location %>scss/",
+        "fonts": "<%= src_location %>fonts/",
+        "images": "<%= src_location %>img/"
+    },
+    "templates": {
+        "pages": "<%= src_location %>templates/pages/",
+        "includes": "<%= src_location %>templates/includes/",
+        "data": "<%= src_location %>templates/data/",
+        "layouts": "<%= src_location %>templates/layouts/"
+    }
 }

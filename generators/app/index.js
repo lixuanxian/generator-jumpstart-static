@@ -55,7 +55,9 @@ module.exports = generators.Base.extend({
 
         // Build the Gruntfile which sits as a subgenerator
         this.log("Building the Gulpfile");
-        this.composeWith("jumpstart-static:gulp", {});
+        this.composeWith("jumpstart-static:gulp", {
+            local: require.resolve("../gulp")
+        });
 
     },
     install: function() {
