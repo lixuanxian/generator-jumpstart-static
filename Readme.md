@@ -1,5 +1,5 @@
 # Jumpstart ~ Static
-A [**Yeoman**](http://yeoman.io/) generator for scaffolding new static sites.
+A [**Yeoman**](http://yeoman.io/) generator for scaffolding modern static sites.
 
 ## Requirements
  - [Yo](http://yeoman.io/learning/)
