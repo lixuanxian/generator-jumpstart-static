@@ -7,6 +7,8 @@ node_modules/*
 build/*
 docs/*
 
+test/.tmp/*
+
 Readme.html
 
 *.sublime-project
