@@ -1,7 +1,7 @@
 {
   "name": "generator-jumpstart-static",
-  "title": "A Static Site Scaffold for Not Too Fancy Guys",
-  "description": "My personal project scaffold for rapid setup of Assemble generated static sites.",
+  "title": "Jumpstart Static",
+  "description": "A Yeoman generator for scaffolding modern static sites.",
   "version": "3.0.0",
   "author": "Max Barry",
   "license": "MIT",
