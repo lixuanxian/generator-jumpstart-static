@@ -1,4 +1,15 @@
-re('gulp'),
+/*
+The following works... but it throws a console warning basically saying that the hot reloader isn't working.
+The error message is the same as this:
+https://github.com/glenjamin/webpack-hot-middleware/issues/70
+
+Maybe try when Webpack hits 2.0?
+
+There are loads of suggestions as to why. Potentially because the React component is declared alongside the mounter. ES2016 is used? 
+*/
+
+
+var gulp = require('gulp'),
     pkg = require('../package.json'),
     environments = require('gulp-environments'),
     path = require('path'),
@@ -23,12 +34,12 @@ var dest = pkg.build.js;
 // TODO: Choost either browsersync for everything or bs proxy + dev web
 // TODO: WHERE WE WERE GOING WRONG: In the watch task, don't run tasks. The tasks watch is already being done by webpack-dev-server
 var webpackSettings = {
-    watch: environments.development(),
+    // watch: environments.development(),
     entry: {
         app: [
-            'webpack-dev-server/client?http://localhost:8080',
-            // 'webpack-hot-middleware/client?reload=true',
-            'webpack/hot/only-dev-server',
+            // 'webpack-dev-server/client?http://localhost:8080',
+            'webpack/hot/dev-server',
+            'webpack-hot-middleware/client',
             path.join(process.cwd(), pkg.src.js, 'app.jsx')
         ],
         // app: path.join(process.cwd(), pkg.src.js, 'app.jsx'),
@@ -45,20 +56,22 @@ var webpackSettings = {
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin()
     ] : [
+        new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new BrowserSyncPlugin({
-            // browse to http://localhost:3000/ during development,
-            host: 'localhost',
-            port: 3000,
-            // server: {
-            //     baseDir: [ pkg.paths.build ]
-            // },
-            proxy: 'http://localhost:8080',
-            files: [pkg.build.css + '**/*.css', pkg.paths.build + '**/*.html']
-                // })
-        }, {
-            reload: false
-        })
+        new webpack.NoErrorsPlugin()
+        // new BrowserSyncPlugin({
+        //     // browse to http://localhost:3000/ during development,
+        //     host: 'localhost',
+        //     port: 3000,
+        //     // server: {
+        //     //     baseDir: [ pkg.paths.build ]
+        //     // },
+        //     proxy: 'http://localhost:8080',
+        //     files: [pkg.build.css + '**/*.css', pkg.paths.build + '**/*.html']
+        //         // })
+        // }, {
+        //     reload: false
+        // })
     ],
     resolve: {
         extensions: ['', '.js', '.jsx', ]
@@ -87,23 +100,59 @@ if (environments.development()) {
     webpackSettings.devtool = "eval";
 };
 
-var WebpackDevServer = require("webpack-dev-server");
+// var WebpackDevServer = require("webpack-dev-server");
 
 // TODO: Add hmr
 
-gulp.task('devserve', function(callback) {
-    new WebpackDevServer(webpack(webpackSettings), {
-        publicPath: "/js/",
-        contentBase: "./build/",
-        // hot: true,
-        // inline: true,
-        stats: {
-            colors: true
-        }
-    }).listen(8080, "localhost", function(err) {
-        if (err) throw new gutil.PluginError("webpack-dev-server", err);
-        gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
+var browserSync = require('browser-sync');
+var webpackDevMiddleware = require('webpack-dev-middleware');
+var webpackHotMiddleware = require('webpack-hot-middleware');
+
+var bundler = webpack(webpackSettings);
+
+gulp.task('dev', function(callback) {
+    // new WebpackDevServer(webpack(webpackSettings), {
+    //     publicPath: "/js/",
+    //     contentBase: "./build/",
+    //     // hot: true,
+    //     // inline: true,
+    //     stats: {
+    //         colors: true
+    //     }
+    // }).listen(8080, "localhost", function(err) {
+    //     if (err) throw new gutil.PluginError("webpack-dev-server", err);
+    //     gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
+    // });
+
+    browserSync({
+        server: {
+          baseDir: [ pkg.paths.build ],
+
+          middleware: [
+            webpackDevMiddleware(bundler, {
+              // IMPORTANT: dev middleware can't access config, so we should
+              // provide publicPath by ourselves
+              publicPath: webpackSettings.output.publicPath,
+
+              // pretty colored output
+              stats: { colors: true }
+
+              // for other settings see
+              // http://webpack.github.io/docs/webpack-dev-middleware.html
+            }),
+
+            // bundler should be the same as above
+            webpackHotMiddleware(bundler)
+          ]
+        },
+
+        // no need to watch '*.js' here, webpack will take care of it for us,
+        // including full page reloads if HMR won't work
+        files: [pkg.build.css + '**/*.css', pkg.paths.build + '**/*.html']
     });
+
+
+
 })
 
 // Gulp tasks
@@ -115,11 +164,11 @@ gulp.task('scripts:lint', function(done) {
         .pipe(jshint.reporter('fail'))
 });
 
-gulp.task('scripts', gulp.series('scripts:lint', function(done) {
+// gulp.task('scripts', gulp.series('scripts:lint', function(done) {
 
-    return gulp.src(src)
-        .pipe(webpackStream(webpackSettings, webpack))
-        .pipe(gulp.dest(dest));
+    // return gulp.src(src)
+    //     .pipe(webpackStream(webpackSettings, webpack))
+    //     .pipe(gulp.dest(dest));
 
     // webpack(webpackSettings, function(err, stats) {
     //     if (err) throw new gutil.PluginError('scripts:webpack', err);
@@ -128,7 +177,7 @@ gulp.task('scripts', gulp.series('scripts:lint', function(done) {
     //     }));
     //     done();
     // });
-}));
+// }));
 
 gulp.task('modernizr', function() {
     return gulp.src(src)
