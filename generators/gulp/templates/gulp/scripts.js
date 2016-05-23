@@ -14,7 +14,7 @@ var modernizr = require('gulp-modernizr'),
 var src = path.join(pkg.src.js, '**/*.{js,jsx}'),
     dest = path.join(process.cwd(), pkg.build.js);
 
-var webpackSettings = require("../webpack.config.js");
+var webpackSettings = require("./webpack.config.js");
 
 gulp.task('scripts', function(done) {
     return gulp.src(src)
