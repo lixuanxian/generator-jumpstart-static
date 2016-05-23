@@ -3,7 +3,6 @@ var gulp = require('gulp'),
     environments = require('gulp-environments'),
     del = require('del'),
     path = require('path'),
-    connect = require('gulp-connect'),
     requireDir = require('require-dir');
 
 // Loading gulp tasks in to the registry
