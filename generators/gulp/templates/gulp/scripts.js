@@ -13,16 +13,17 @@ var modernizr = require('gulp-modernizr'),
 
 // Scripts variables
 var src = path.join(pkg.src.js, '**/*.{js,jsx}'),
+    srcPath = path.join(process.cwd(), pkg.src.js),
     dest = path.join(process.cwd(), pkg.build.js);
 
 // Webpack configuration
 var webpackSettings = {
     debug: environments.development(),
     entry: {
-        app: path.join(process.cwd(), pkg.src.js, 'app.js'),
+        app: path.join(srcPath, 'app.js'),
         // Each additional bundle you require (e.g. index page js, or contact page js)
         // should be added here and referenced as a script tag in the corresponding template
-        // index: path.join(process.cwd(), pkg.src.js, 'index.js'),
+        // index: path.join(srcPath, 'index.js'),
     },
     output: {
         path: dest,

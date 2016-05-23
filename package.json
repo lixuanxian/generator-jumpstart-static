@@ -6,11 +6,6 @@
     "author": "Max Barry",
     "license": "MIT",
     "homepage": "https://github.com/max-barry/generator-jumpstart-static",
-    "files": [
-      "generators/app",
-      "generators/gulp",
-      "generators/grunt"
-  ],
     "repository": {
         "type": "git",
         "url": "git@github.com:max-barry/generator-jumpstart-static.git"
