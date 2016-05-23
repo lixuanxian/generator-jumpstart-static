@@ -46,7 +46,8 @@
         "jshint-loader": "^0.8.3",
         "pixrem": "^3.0.0",
         "require-dir": "^0.3.0",
-        "webpack": "^1.13.0"
+        "webpack": "^1.13.0",
+        "webpack-stream": "^3.2.0"
     },
     "paths": {
         "project": "<%= src_location %>",
