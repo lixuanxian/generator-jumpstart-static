@@ -12,11 +12,9 @@ var modernizr = require('gulp-modernizr'),
 
 // Scripts variables
 var src = path.join(pkg.src.js, '**/*.{js,jsx}'),
-    srcPath = path.join(process.cwd(), pkg.src.js),
     dest = path.join(process.cwd(), pkg.build.js);
 
 var webpackSettings = require("../webpack.config.js");
-
 
 gulp.task('scripts', function(done) {
     return gulp.src(src)

@@ -68,13 +68,13 @@ A pre-fabbed gulpfile with everything you need to build the project, run a watch
 
 `gulp --env production` ~ As above but for a production environment (e.g. minifies .js and .css files, etc.)
 
-`gulp watch` ~ Watches for changes in any file that would require a re-build.
-
-`gulp connect` ~ Runs the project on a local server (port 8080).
+`gulp watch` or `gulp connect` ~ Launch the project on a local server and watche for changes. CSS changes should be [hot-loaded](https://www.quora.com/Whats-hot-loading-in-Webpack-and-how-does-it-work) instantly in the browser.
 
 `gulp clean` ~ Clear the build directory.
 
 `gulp deploy` ~ Deploy the application to a Surge.sh web service. [Surge](https://surge.sh/) host static sites really well. Customise the `gulpfile.js` configuration to set a custom domain.
+
+Normally I just run `gulp watch` in a Terminal window, and let the build scripts manage themselves. The only time you'll need to break the watch is when you modify the build scripts or the files they're watching. For example, if you add new `.swig` files or a new entry point for Webpack. 
 
 ### package.json
 All the packages required to run the Gulp build script.
