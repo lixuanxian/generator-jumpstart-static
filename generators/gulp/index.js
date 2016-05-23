@@ -15,7 +15,7 @@ module.exports = generators.Base.extend({
 		var to_glob = [
             // Find root level files
             "./gulpfile.js",
-            "./webpack.config.js",
+            // "./webpack.config.js",
             // Find all grunt tasks
             "./gulp/**/*.js",
         ];
