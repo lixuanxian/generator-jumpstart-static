@@ -1,5 +1,5 @@
 # Jumpstart ~ Static
-A [**Yeoman**](http://yeoman.io/) generator for scaffolding modern static sites.
+A [**Yeoman**](http://yeoman.io/) generator for scaffolding modern static sites using Webpack, SCSS, Browser-sync, Gulp and Swig
 
 ## Requirements
  - [Yo](http://yeoman.io/learning/)
@@ -9,7 +9,7 @@ A [**Yeoman**](http://yeoman.io/) generator for scaffolding modern static sites.
 
 ## Changelog
 
-### v3.0.0
+### v3.1.0
 **Added** Browser-sync is used instead of Connect. Includes hot-loading of CSS by default.
 
 ### v3.0.0

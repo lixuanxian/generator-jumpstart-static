@@ -1,7 +1,7 @@
 {
   "name": "generator-jumpstart-static",
   "title": "Jumpstart Static",
-  "description": "A Yeoman generator for scaffolding modern static sites",
+  "description": "A Yeoman generator for scaffolding modern static sites using Webpack, SCSS, Browser-sync, Gulp and Swig",
   "version": "3.1.0",
   "author": "Max Barry",
   "license": "MIT",
@@ -13,14 +13,12 @@
   },
   "readmeFilename": "Readme.md",
   "keywords": [
-    "static",
-    "templates",
     "generator",
-    "project",
-    "gruntfile",
     "scaffold",
     "yeoman",
-    "bourbon",
+    "webpack",
+    "gulp",
+    "browser-sync",
     "swig",
     "yeoman-generator"
   ],
