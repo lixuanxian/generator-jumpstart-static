@@ -11,13 +11,6 @@ requireDir('./gulp/', { recurse: true });
 // Basic task and alias
 gulp.task('default', gulp.parallel('scripts', 'styles', 'fonts', 'images', 'templates'));
 
-// Watch task
-gulp.task('watch', function(){
-    gulp.watch(path.join(pkg.src.js, '**/*.js'), gulp.parallel('scripts'));
-    gulp.watch(path.join(pkg.src.scss, '**/*.scss'), gulp.parallel('styles'));
-    gulp.watch(path.join(pkg.paths.templates, '**/*.{swig,json,html}'), gulp.parallel('templates'));
-});
-
 // Clean task
 gulp.task('clean', function(done){
     return del([pkg.paths.build], done);
