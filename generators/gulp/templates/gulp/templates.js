@@ -17,6 +17,7 @@ var opts = {
         data: require(path.join('../', pkg.templates.data, 'data.json')),
         meta: require(path.join('../', pkg.templates.data, 'meta.json')),
     },
+    defaults: { cache: false },
     // Register template tags and helpers
     // setup: function(swig) {
         // marked.useTag(swig, 'markdown');
