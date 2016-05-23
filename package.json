@@ -1,7 +1,7 @@
 {
   "name": "generator-jumpstart-static",
   "title": "Jumpstart Static",
-  "description": "A Yeoman generator for scaffolding modern static sites.",
+  "description": "A Yeoman generator for scaffolding modern static sites",
   "version": "3.1.0",
   "author": "Max Barry",
   "license": "MIT",

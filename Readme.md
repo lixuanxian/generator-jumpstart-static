@@ -10,9 +10,12 @@ A [**Yeoman**](http://yeoman.io/) generator for scaffolding modern static sites.
 ## Changelog
 
 ### v3.0.0
+**Added** Browser-sync is used instead of Connect. Includes hot-loading of CSS by default.
+
+### v3.0.0
 **Added** Gulp has replaced Grunt as the default build script.
 
-**Deprecated** `yo jumpstart-static:grunt` will generate the same Grunt setup as the sub-3.0 versions of this generator. The Grunt setup will no longer be maintained, in favour of Gulp.
+**Deprecated** `yo jumpstart-static:grunt` will generate the same Grunt setup as the sub-3.0 versions of this generator. However, the Grunt setup will no longer be maintained, in favour of Gulp.
 
 ### v2.5.0
 **Added** Gruntfile and task configuration is now a subgenerator, so can be deployed independent of a full generator.
