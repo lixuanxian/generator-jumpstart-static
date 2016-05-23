@@ -19,6 +19,7 @@
     "readmeFilename": "Readme.md",
     "devDependencies": {
         "autoprefixer": "^6.2.0",
+        "browser-sync": "^2.12.8",
         "cssnano": "^3.5.2",
         "del": "^2.2.0",
         "gulp": "github:gulpjs/gulp#4.0",
@@ -42,7 +43,7 @@
         "gulp-util": "^3.0.7",
         "gulp-webp": "^2.3.0",
         "jshint": "^2.9.2",
-        "jshint-stylish": "^2.2.0",
+        "jshint-loader": "^0.8.3",
         "pixrem": "^3.0.0",
         "require-dir": "^0.3.0",
         "webpack": "^1.13.0"

@@ -1,14 +1,3 @@
-/*
-The following works... but it throws a console warning basically saying that the hot reloader isn't working.
-The error message is the same as this:
-https://github.com/glenjamin/webpack-hot-middleware/issues/70
-
-Maybe try when Webpack hits 2.0?
-
-There are loads of suggestions as to why. Potentially because the React component is declared alongside the mounter. ES2016 is used? 
-*/
-
-
 var gulp = require('gulp'),
     pkg = require('../package.json'),
     environments = require('gulp-environments'),
@@ -57,8 +46,8 @@ var webpackSettings = {
         new webpack.optimize.UglifyJsPlugin()
     ] : [
         new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.NoErrorsPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
         // new BrowserSyncPlugin({
         //     // browse to http://localhost:3000/ during development,
         //     host: 'localhost',
@@ -82,7 +71,7 @@ var webpackSettings = {
             test: /\.jsx?/,
             exclude: /(node_modules|bower_components)/,
             include: [path.join(process.cwd(), pkg.src.js)],
-            loaders: ['react-hot', 'babel?presets[]=react,presets[]=es2015'],
+            loaders: ['react-hot', 'babel?presets[]=react,presets[]=es2015', 'webpack-module-hot-accept'],
             // loader: 'babel',
             // query: {
             // presets: ['es2015', 'react'],

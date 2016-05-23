@@ -1,4 +1,4 @@
-// Load general packages
+// Common imports
 var gulp = require('gulp'),
     pkg = require('../package.json'),
     environments = require('gulp-environments'),
@@ -6,18 +6,18 @@ var gulp = require('gulp'),
     gutil = require("gulp-util");
 
 // Scripts specific packages
-var jshint = require('gulp-jshint'),
-    modernizr = require('gulp-modernizr'),
+var modernizr = require('gulp-modernizr'),
     uglify = require('gulp-uglify'),
     webpack = require('webpack'),
-    cache = require('gulp-cached');
+    webpackStream = require('webpack-stream');
 
 // Scripts variables
-var src = path.join(pkg.src.js, '**/*.js');
-var dest = pkg.build.js;
+var src = path.join(pkg.src.js, '**/*.{js,jsx}'),
+    dest = path.join(process.cwd(), pkg.build.js);
 
 // Webpack configuration
 var webpackSettings = {
+    debug: environments.development(),
     entry: {
         app: path.join(process.cwd(), pkg.src.js, 'app.js'),
         // Each additional bundle you require (e.g. index page js, or contact page js)
@@ -25,41 +25,44 @@ var webpackSettings = {
         // index: path.join(process.cwd(), pkg.src.js, 'index.js'),
     },
     output: {
-        path: pkg.build.js,
+        path: dest,
+        publicPath: '/js/',
         filename: '[name].js'
     },
     plugins: environments.production() ? [
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin()
-    ] : [],
+    ] : [
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.NoErrorsPlugin(),
+    ],
     resolve: {
         extensions: ['', '.js', '.jsx', ]
     },
-    debug: environments.development()
+    module: {
+        preLoaders: [{
+            test: /\.js$/,
+            loader: 'jshint',
+            exclude: /node_modules/
+        }],
+        loaders: [],
+    },
+    jshint: {}
 };
 
 if (environments.development()) {
     webpackSettings.devtool = "eval";
 };
 
-// Gulp tasks
-gulp.task('scripts:lint', function(done) {
+gulp.task('scripts', function(done) {
     return gulp.src(src)
-        .pipe(cache('linted'))
-        .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(jshint.reporter('fail'))
+        .pipe(webpackStream(webpackSettings, webpack))
+        .on('error', function(error) {
+            gutil.log(error.message);
+            this.emit('end');
+        })
+        .pipe(gulp.dest(dest));
 });
-
-gulp.task('scripts', gulp.series('scripts:lint', function(callback) {
-    webpack(webpackSettings, function(err, stats) {
-        if (err) throw new gutil.PluginError('scripts:webpack', err);
-        gutil.log('scripts:webpack', stats.toString({
-            colors: true
-        }));
-        callback();
-    });
-}));
 
 gulp.task('modernizr', function() {
     return gulp.src(src)
@@ -67,8 +70,3 @@ gulp.task('modernizr', function() {
         .pipe(uglify())
         .pipe(gulp.dest(dest));
 });
-
-// // Watch js for change
-// gulp.task('watch', function() {
-//     gulp.watch(src, gulp.parallel('scripts'));
-// });

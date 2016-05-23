@@ -16,7 +16,6 @@ var src = path.join(pkg.src.scss, '**/*.scss'),
     dest = pkg.build.css;
 
 // Gulp tasks
-// var styles = function() {
 gulp.task('styles', function() {
 
     var processors = [
@@ -51,9 +50,3 @@ gulp.task('styles', function() {
         // Write CSS to build/css
         .pipe(gulp.dest(dest));
 });
-// };
-
-// // Watch SCSS for change
-// gulp.task('watch', function() {
-//     gulp.watch(src, gulp.parallel('styles'));
-// });
