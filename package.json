@@ -2,7 +2,7 @@
     "name": "generator-jumpstart-static",
     "title": "Jumpstart Static",
     "description": "A Yeoman generator for scaffolding modern static sites using Webpack, SCSS, Browser-sync, Gulp and Swig",
-    "version": "3.2.0",
+    "version": "3.2.1",
     "author": "Max Barry",
     "license": "MIT",
     "homepage": "https://github.com/max-barry/generator-jumpstart-static",
