@@ -9,6 +9,9 @@ A [**Yeoman**](http://yeoman.io/) generator for scaffolding modern static sites 
 
 ## Changelog
 
+### v3.3.0
+**Modified** Webpack config now sits in an external file `webpack.config.js`.
+
 ### v3.1.0
 **Added** Browser-sync is used instead of Connect. Includes hot-loading of CSS by default.
 
