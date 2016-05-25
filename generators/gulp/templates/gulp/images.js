@@ -4,7 +4,7 @@ var gulp = require('gulp'),
     environments = require('gulp-environments'),
     path = require('path'),
     changed = require('gulp-changed'),
-    gutil = require("gulp-util");
+    gutil = require('gulp-util');
 
 // Image specific plugins
 var imagemin = require('gulp-imagemin'),
@@ -14,17 +14,18 @@ var imagemin = require('gulp-imagemin'),
 var src = path.join(pkg.src.images, '**/*.{png,jpg,jpeg,gif,svg}');
 var dest = pkg.build.images;
 
-// Image task
+
+// Image tasks
+gulp.task('images:webp', function() {
+    return gulp.src(path.join(dest, '**/*.{png,jpg,jpeg,gif,svg}'))
+        .pipe(environments.production(webp()))
+        .pipe(gulp.dest(dest));
+});
+
 gulp.task('images:optimize', function() {
     return gulp.src(src)
         .pipe(environments.production(imagemin()))
         .pipe(gulp.dest(dest));
 });
 
-gulp.task('images:webp', function() {
-    return gulp.src(src)
-        .pipe(environments.production(webp()))
-        .pipe(gulp.dest(dest));
-});
-
-gulp.task('images', gulp.parallel('images:optimize', 'images:webp'));
+gulp.task('images', gulp.series('images:optimize', 'images:webp'));

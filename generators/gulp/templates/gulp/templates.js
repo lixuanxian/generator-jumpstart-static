@@ -2,7 +2,8 @@
 var gulp = require('gulp'),
     pkg = require('../package.json'),
     environments = require('gulp-environments'),
-    path = require('path');
+    path = require('path'),
+    gutil = require("gulp-util");
 
 // Load swig specific packages
 var swig = require('gulp-swig'),
@@ -32,6 +33,10 @@ var src = path.join(pkg.templates.pages, '**/*.{swig,html}'),
 gulp.task('templates', function() {
     return gulp.src(src)
         .pipe(swig(opts))
+        .on('error', function(error) {
+            gutil.log(error.message);
+            this.emit('end');
+        })
         .pipe(environments.production(prettify()))
         .pipe(environments.production(cachebust()))
         .pipe(gulp.dest(dest));
