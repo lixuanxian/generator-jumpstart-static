@@ -1,6 +1,8 @@
 # Jumpstart ~ Static
 A [**Yeoman**](http://yeoman.io/) generator for scaffolding modern static sites using Webpack, SCSS, Browser-sync, Gulp and Swig
 
+Made by [Max](https://twitter.com/mxbrry)
+
 ## Requirements
  - [Yo](http://yeoman.io/learning/)
  - [Gulp-cli](https://github.com/gulpjs/gulp-cli)
@@ -74,7 +76,7 @@ A pre-fabbed gulpfile with everything you need to build the project, run a watch
 
 `gulp deploy` ~ Deploy the application to a Surge.sh web service. [Surge](https://surge.sh/) host static sites really well. Customise the `gulpfile.js` configuration to set a custom domain.
 
-Normally I just run `gulp watch` in a Terminal window, and let the build scripts manage themselves. The only time you'll need to break the watch is when you modify the build scripts or the files they're watching. For example, if you add new `.swig` files or a new entry point for Webpack. 
+Normally I just run `gulp watch` in a Terminal window, and let the build scripts manage themselves. The only time you'll need to break the watch is when you modify the build scripts or the files they're watching. For example, if you add new `.swig` files or a new entry point for Webpack.
 
 ### package.json
 All the packages required to run the Gulp build script.
