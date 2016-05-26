@@ -27,7 +27,7 @@ gulp.task('scripts', function(done) {
 });
 
 gulp.task('modernizr', function() {
-    return gulp.src(src)
+    return gulp.src(path.join(pkg.src.scss, '**/*.scss'))
         .pipe(modernizr())
         .pipe(uglify())
         .pipe(gulp.dest(dest));
