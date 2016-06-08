@@ -68,6 +68,7 @@ module.exports = generators.Base.extend({
         this.bowerInstall([
             "bourbon#^4.0.1",
             "scut#^1.2.1",
+            "family.scss#^1.0.6",
             "reset-scss"
         ], { "save": true });
 
