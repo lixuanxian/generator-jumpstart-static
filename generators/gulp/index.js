@@ -27,7 +27,6 @@ module.exports = generators.Base.extend({
         common.templateStuff(_this, to_template);
 
 	},
-
 	install: function() {
 		this.npmInstall();
 	}

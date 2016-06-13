@@ -4,9 +4,6 @@
     "description": "",
     "version": "0.0.1gi",
     "keywords": [],
-    "scripts": {
-        "postinstall": "bower install && gulp --env production"
-    },
     "author": {
         "name": ""
     },

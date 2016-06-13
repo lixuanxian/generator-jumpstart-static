@@ -1,8 +1,24 @@
+var _ = require("lodash"),
+    glob = require("glob-all");
+
+var filterForExcluded = function(targets, context) {
+    if ( !!context.options.exclude ) {
+        var toExclude = _.map(context.options.exclude, function(item) { return context.templatePath(item) } );
+        return _.pullAll(targets, toExclude);
+    } else {
+        return targets;
+    }
+}
+
 module.exports.templateStuff = function(context, files, params) {
     context.log("Templating files...");
 
     var slug = require("slug");
     var slugName = slug(context.appname);
+
+    // TODO : Implement filter system on templates
+    // Currently the template targets are not absolute
+    // files = filterForExcluded(files, context);
 
     files.forEach(function(targ){
         context.fs.copyTpl(
@@ -22,12 +38,11 @@ module.exports.templateStuff = function(context, files, params) {
 module.exports.copyStuff = function(context, files) {
     context.log("Copying files...");
 
-    var _ = require("lodash"),
-        glob = require("glob-all");
-
     var to_copy = _.flatten(files.map(
         function(el){ return glob.sync( context.templatePath(el) ); }
     ));
+
+    to_copy = filterForExcluded(to_copy, context);
 
     /**
     The globbing returns absolute paths to the source (generator template) files.
@@ -50,34 +65,3 @@ module.exports.directoryStuff = function(directories) {
         mkdirp(directories[i]);
     }
 };
-
-// module.exports.promptStuff = function(context, callback) {
-
-//     var prompts = [{
-//         type: "input",
-//         name: "name",
-//         message: "What is the name of your project?",
-//         default: context.appname
-//     }];
-
-//     this.prompt(
-//         prompts,
-//         function(answers) {
-//             // Basic app settings
-//             this.appName = answers.name;
-//             this.slugName = slug(this.appName);
-
-//             // Define contextual variables for the whole build script.
-//             this.ctxVars = {
-//                 name: this.appName,
-//                 slugName: this.slugName,
-//                 build_location: "./build/",
-//                 src_location: "./src/"
-//             };
-
-//             // Resolve async
-//             done();
-//         }.bind(this)
-//     );
-
-// }

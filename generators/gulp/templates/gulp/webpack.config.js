@@ -1,6 +1,6 @@
 // Common imports
 var gulp = require('gulp'),
-    pkg = require('./package.json'),
+    pkg = require('../package.json'),
     environments = require('gulp-environments'),
     path = require('path');
 

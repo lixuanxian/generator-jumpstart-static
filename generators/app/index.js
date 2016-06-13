@@ -55,7 +55,8 @@ module.exports = generators.Base.extend({
 
         // Build the Gruntfile which sits as a subgenerator
         this.log("Building the Gulpfile");
-        this.composeWith("jumpstart-static:gulp", {});
+        var opts = !!_this.options.exclude ? { options: { exclude: _this.options.exclude } }: {};
+        this.composeWith("jumpstart-static:gulp", opts);
 
     },
     install: function() {
@@ -73,6 +74,5 @@ module.exports = generators.Base.extend({
         ], { "save": true });
 
     },
-    end: function() {
-    }
+    end: function() {}
 });
