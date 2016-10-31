@@ -9,6 +9,7 @@ var browserSync = require('browser-sync');
 gulp.task('serve', gulp.parallel(function() {
     gulp.watch(path.join(pkg.src.scss, '**/*.scss'), gulp.parallel('styles'));
     gulp.watch(path.join(pkg.paths.templates, '**/*.{swig,json,html}'), gulp.parallel('templates'));
+    gulp.watch(path.join(pkg.src.js, '**/*.js'), gulp.parallel('scripts'));
 }, function() {
     browserSync({
         server: {
